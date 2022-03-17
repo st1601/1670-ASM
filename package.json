@@ -1,0 +1,24 @@
+{
+  "name": "1670-asm",
+  "version": "1.0.0",
+  "description": "1670",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/st1601/1670-ASM.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/st1601/1670-ASM/issues"
+  },
+  "homepage": "https://github.com/st1601/1670-ASM#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "hbs": "^4.2.0",
+    "mongodb": "^4.4.1"
+  }
+}
