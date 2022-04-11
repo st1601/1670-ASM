@@ -9,21 +9,22 @@
 <body>
     <h1>All Feed Back</h1>
     <table border="1" width ="50%">
+        {{#each feedbacks}}
         <tr>
             <td>First Name</td>
             <td>Last Name</td>
             <td>Mail</td>
+            <td>Name Book</td>
             <td>Country</td>
             <td>Feed Back</td>
         </tr>
-        {{#each feedBacks}}
             <tr>
-                <td>{{firstname}}</td>
-                <td>{{lastname}}</td>
-                <td>{{mail}}</td>
-                <td>{{nameBook}}</td>
-                <td>{{country}}</td>
-                <td>{{feedback}}</td>
+                    <td>{{firstname}}</td>
+                    <td>{{lastname}}</td>
+                    <td>{{mail}}</td>
+                    <td>{{nameBook}}</td>
+                    <td>{{country}}</td>
+                    <td>{{feedback}}</td>
             </tr>
         {{/each}}
     </table>
