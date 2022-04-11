@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
+const Feedback = require('./controllers/Feedback')
 const session = require('express-session')
 app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
 app.use(express.static('../1670-ASM/public'));
+
 
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
@@ -18,6 +20,25 @@ app.use('/admin', adminController)
 
 const customerController = require('./controllers/customer')
 app.use('/customer', customerController)
+
+app.get('./feedback',(req,res)=>{
+    res.render('feedback')
+})
+
+app.post('/feedback', async (req, res)=>{
+    const firstname = req.body.firstname
+    const lastname = req.body.lastname
+    const mail = req.body.mail
+    const nameBook = req.body.nameBook
+    const country = req.body.country
+    const feedback = req.body.feedback
+
+    const feedbackEntity = new Feedback({'firstname':firstname, 'lastname':lastname, 'mail':mail, 'nameBook':nameBook, 'country':country, 'feedback':feedback})
+    
+    await feedbackEntity.save()
+
+    res.redirect('/')
+})
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT)
