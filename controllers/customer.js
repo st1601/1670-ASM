@@ -2,6 +2,10 @@ const express = require('express')
 const async = require('hbs/lib/async')
 const router = express.Router()
 const {insertObject,checkUserRole,USER_TABLE_NAME} = require('../databaseHandler')
+const Feedback = require('./Feedback')
+const mongoose = require('mongoose');
+
+router.use(express.urlencoded({extended:true}))
 
 router.get('/register',(req,res)=>{
     res.render('register')
@@ -40,6 +44,25 @@ router.post('/register',(req,res)=>{
     }
     insertObject(USER_TABLE_NAME,objectToInsert)
     res.render('home')
+})
+
+router.get('./feedback',(req,res)=>{
+    res.render('feedback')
+})
+
+router.post('/feedback', async (req, res)=>{
+    const firstname = req.body.firstname
+    const lastname = req.body.lastname
+    const mail = req.body.mail
+    const nameBook = req.body.nameBook
+    const country = req.body.country
+    const feedback = req.body.feedback
+
+    const feedbackEntity = new Feedback({'firstname':firstname, 'lastname':lastname, 'mail':mail, 'nameBook':nameBook, 'country':country, 'feedback':feedback})
+    
+    await feedbackEntity.save()
+
+    res.render('/')
 })
 
 module.exports = router;

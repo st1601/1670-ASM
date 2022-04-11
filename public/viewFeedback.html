@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Feed Back</title>
+</head>
+<body>
+    <h1>All Feed Back</h1>
+    <table border="1" width ="50%">
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Mail</td>
+            <td>Country</td>
+            <td>Feed Back</td>
+        </tr>
+        {{#each feedBacks}}
+            <tr>
+                <td>{{firstname}}</td>
+                <td>{{lastname}}</td>
+                <td>{{mail}}</td>
+                <td>{{nameBook}}</td>
+                <td>{{country}}</td>
+                <td>{{feedback}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</body>
+</html>
