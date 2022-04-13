@@ -55,4 +55,7 @@ input[type=submit]:hover {
     content: "";    
     display: table;    
     clear: both;    
-}    
+}
+table td{
+    text-align: center;
+}
