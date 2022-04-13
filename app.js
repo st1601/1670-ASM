@@ -16,9 +16,16 @@ app.use(express.static(__dirname + '/public'));
 app.get('/',(req,res)=>{
     res.render('index',{userInfo:req.session.User})
 })
+
 app.get('/login', (req,res)=>{
     res.render('login')
 })
+
+app.get('/category', (req,res)=>{
+    res.render('category')
+})
+
+
 
 const adminController = require('./controllers/admin')
 app.use('/admin', adminController)
