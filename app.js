@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'));
 
 app.get('/',(req,res)=>{
-    res.render('home',{userInfo:req.session.User})
+    res.render('index',{userInfo:req.session.User})
 })
 
 const adminController = require('./controllers/admin')
