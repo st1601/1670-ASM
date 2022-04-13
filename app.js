@@ -25,6 +25,40 @@ app.get('/category', (req,res)=>{
     res.render('category')
 })
 
+app.get('/cart', (req,res)=>{
+    res.render('cart')
+})
+
+app.get('/checkout', (req,res)=>{
+    res.render('checkout')
+})
+
+app.get('/confirmation', (req,res)=>{
+    res.render('confirmation')
+})
+
+app.get('/contact', (req,res)=>{
+    res.render('contact')
+})
+
+app.get('/feedback', (req,res)=>{
+    res.render('feedback')
+})
+
+app.get('/register', (req,res)=>{
+    res.render('register')
+})
+
+app.get('/single-products', (req,res)=>{
+    res.render('single-products')
+})
+
+app.get('/tracking-order', (req,res)=>{
+    res.render('tracking-order')
+})
+
+
+
 
 
 const adminController = require('./controllers/admin')
