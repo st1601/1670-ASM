@@ -29,7 +29,7 @@ app.get('/feedback',(req,res)=>{
 
 app.get('/viewFeedback', async (req,res)=>{
     const feedbacks = await Feedback.find()
-    res.render('viewFeedback',{'feedback':feedbacks})
+    res.render('viewFeedback',{'feedbacks':feedbacks})
 })
 
 app.post('/feedback', async (req, res)=>{
