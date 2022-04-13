@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
+const async = require('hbs/lib/async')
 const Feedback = require('./controllers/Feedback')
 const session = require('express-session')
+const mongoose = require('mongoose');
 app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
 app.use(express.static('../1670-ASM/public'));
 
@@ -21,8 +23,13 @@ app.use('/admin', adminController)
 const customerController = require('./controllers/customer')
 app.use('/customer', customerController)
 
-app.get('./feedback',(req,res)=>{
+app.get('/feedback',(req,res)=>{
     res.render('feedback')
+})
+
+app.get('/viewFeedback', async (req,res)=>{
+    const feedbacks = await Feedback.find()
+    res.render('viewFeedback',{'feedback':feedbacks})
 })
 
 app.post('/feedback', async (req, res)=>{

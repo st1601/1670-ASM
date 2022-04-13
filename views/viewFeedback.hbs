@@ -9,7 +9,6 @@
 <body>
     <h1>All Feed Back</h1>
     <table border="1" width ="50%">
-        {{#each feedbacks}}
         <tr>
             <td>First Name</td>
             <td>Last Name</td>
@@ -18,6 +17,7 @@
             <td>Country</td>
             <td>Feed Back</td>
         </tr>
+        {{#each feedbacks}}
             <tr>
                     <td>{{firstname}}</td>
                     <td>{{lastname}}</td>

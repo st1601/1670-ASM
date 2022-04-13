@@ -22,7 +22,10 @@
     "express-session": "^1.17.2",
     "hbs": "^4.2.0",
     "mongodb": "^4.4.1",
-    "mongoose": "^6.2.8",
+    "mongoose": "^6.2.11",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "@types/hbs": "^4.0.1"
   }
 }
