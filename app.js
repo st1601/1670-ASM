@@ -67,6 +67,9 @@ app.use('/admin', adminController)
 const customerController = require('./controllers/customer')
 app.use('/customer', customerController)
 
+const customerController = require('./controllers/order')
+app.use('/order', customerController)
+
 app.get('/feedback',(req,res)=>{
     res.render('feedback')
 })
@@ -75,6 +78,8 @@ app.get('/viewFeedback', async (req,res)=>{
     const feedbacks = await Feedback.find()
     res.render('viewFeedback',{'feedbacks':feedbacks})
 })
+
+
 
 app.post('/feedback', async (req, res)=>{
     const firstname = req.body.firstname
