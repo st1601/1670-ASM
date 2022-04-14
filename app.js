@@ -16,9 +16,50 @@ app.use(express.static(__dirname + '/public'));
 app.get('/',(req,res)=>{
     res.render('index',{userInfo:req.session.User})
 })
+
 app.get('/login', (req,res)=>{
     res.render('login')
 })
+
+app.get('/category', (req,res)=>{
+    res.render('category')
+})
+
+app.get('/cart', (req,res)=>{
+    res.render('cart')
+})
+
+app.get('/checkout', (req,res)=>{
+    res.render('checkout')
+})
+
+app.get('/confirmation', (req,res)=>{
+    res.render('confirmation')
+})
+
+app.get('/contact', (req,res)=>{
+    res.render('contact')
+})
+
+app.get('/feedback', (req,res)=>{
+    res.render('feedback')
+})
+
+app.get('/register', (req,res)=>{
+    res.render('register')
+})
+
+app.get('/single-product', (req,res)=>{
+    res.render('single-product')
+})
+
+app.get('/tracking-order', (req,res)=>{
+    res.render('tracking-order')
+})
+
+
+
+
 
 const adminController = require('./controllers/admin')
 app.use('/admin', adminController)
