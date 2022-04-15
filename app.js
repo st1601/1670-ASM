@@ -53,20 +53,6 @@ app.get('/feedback', (req,res)=>{
 app.get('/register', (req,res)=>{
     res.render('register')
 })
-app.post('/register',(req,res)=>{
-    const username = req.body.Username
-    const role = req.body.Role
-    const pass = req.body.Password
-
-    const objectToInsert = {
-        username: username,
-        role:role,
-        password: pass
-    }
-    //goi ham insert: bang Users, new user trong objectToInsert
-    insertObject(USER_TABLE_NAME,objectToInsert)
-    res.render('home')
-})
 
 app.get('/single-product', (req,res)=>{
     res.render('single-product')
