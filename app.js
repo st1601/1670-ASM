@@ -17,6 +17,10 @@ app.get('/',(req,res)=>{
     res.render('index',{userInfo:req.session.User})
 })
 
+app.get('/home',(req,res)=>{
+    res.render('home',{userInfo:req.session.User})
+})
+
 app.get('/login', (req,res)=>{
     res.render('login')
 })

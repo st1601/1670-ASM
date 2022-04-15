@@ -43,7 +43,7 @@ router.post('/register',(req,res)=>{
         password: pass
     }
     insertObject(USER_TABLE_NAME,objectToInsert)
-    res.render('home')
+    res.render('index')
 })
 
 
