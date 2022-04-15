@@ -6,7 +6,7 @@ const session = require('express-session')
 const mongoose = require('mongoose');
 app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
 app.use(express.static('../1670-ASM/public'));
-const {insertObject,checkUserRole, USER_TABLE_NAME} = require('../databaseHandler')
+
 
 
 app.set('view engine', 'hbs')
