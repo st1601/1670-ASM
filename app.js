@@ -70,6 +70,7 @@ const adminController = require('./controllers/admin')
 app.use('/admin', adminController)
 
 const customerController = require('./controllers/customer')
+const { render } = require('express/lib/response')
 app.use('/customer', customerController)
 
 
@@ -90,6 +91,14 @@ app.get('/replyFeedback', async (req,res)=>{
     const prod = await Feedback.findById(id)
     res.render('replyFeedback', {'feedbacks': prod})
 })
+app.post('/replyFeedbackAdmin', async (req,res)=>{
+    const replyFeedbackAdmin = req.body.replyFeedbackAdmin
+    const prod = await Feedback.findById(id)
+    prod.replyFeedbackAdmin = replyFeedbackAdmin
+    prod.save((err)=>{
+        res.redirect('viewFeedbackAdmin')
+    })
+})
 
 
 app.post('/feedback', async (req, res)=>{
@@ -99,8 +108,8 @@ app.post('/feedback', async (req, res)=>{
     const nameBook = req.body.nameBook
     const country = req.body.country
     const feedback = req.body.feedback
-
-    const feedbackEntity = new Feedback({'firstname':firstname, 'lastname':lastname, 'mail':mail, 'nameBook':nameBook, 'country':country, 'feedback':feedback})
+    const replyFeedbackAdmin = req.replyFeedbackAdmin
+    const feedbackEntity = new Feedback({'firstname':firstname, 'lastname':lastname, 'mail':mail, 'nameBook':nameBook, 'country':country, 'feedback':feedback, 'replyFeedbackAdmin':replyFeedbackAdmin})
     
     await feedbackEntity.save()
 
