@@ -19,6 +19,7 @@
             <td>Country</td>
             <td>Feed Back</td>
             <td>Admin reply</td>
+            <td>Reply</td>
         </tr>
         {{#each feedbacks}}
             <tr>
@@ -28,6 +29,7 @@
                     <td>{{nameBook}}</td>
                     <td>{{country}}</td>
                     <td>{{feedback}}</td>
+                    <td></td>
                     <td><a class="edit" href="/replyfeedback?id={{_id}}">Reply</a></td>
             </tr>
         {{/each}}
