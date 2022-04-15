@@ -67,8 +67,6 @@ app.use('/admin', adminController)
 const customerController = require('./controllers/customer')
 app.use('/customer', customerController)
 
-const customerController = require('./controllers/order')
-app.use('/order', customerController)
 
 app.get('/feedback',(req,res)=>{
     res.render('feedback')
