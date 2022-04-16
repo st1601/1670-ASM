@@ -8,6 +8,7 @@ app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUnini
 app.use(express.static('../1670-ASM/public'));
 
 
+
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
 
@@ -15,6 +16,10 @@ app.use(express.static(__dirname + '/public'));
 
 const homeController = require('./controllers/home')
 app.use('/', homeController)
+
+app.get('/home',(req,res)=>{
+    res.render('home',{userInfo:req.session.User})
+})
 
 app.get('/login', (req,res)=>{
     res.render('login')
@@ -64,7 +69,9 @@ const adminController = require('./controllers/admin')
 app.use('/admin', adminController)
 
 const customerController = require('./controllers/customer')
+const { render } = require('express/lib/response')
 app.use('/customer', customerController)
+
 
 app.get('/feedback',(req,res)=>{
     res.render('feedback')
@@ -74,6 +81,24 @@ app.get('/viewFeedback', async (req,res)=>{
     const feedbacks = await Feedback.find()
     res.render('viewFeedback',{'feedbacks':feedbacks})
 })
+app.get('/viewFeedbackAdmin', async (req,res)=>{
+    const feedbacks = await Feedback.find()
+    res.render('viewFeedbackAdmin',{'feedbacks':feedbacks})
+})
+app.get('/replyFeedback', async (req,res)=>{
+    const id = req.query.id
+    const prod = await Feedback.findById(id)
+    res.render('replyFeedback', {'feedbacks': prod})
+})
+app.post('/replyFeedbackAdmin', async (req,res)=>{
+    const replyFeedbackAdmin = req.body.replyFeedbackAdmin
+    const prod = await Feedback.findById(id)
+    prod.replyFeedbackAdmin = replyFeedbackAdmin
+    prod.save((err)=>{
+        res.redirect('viewFeedbackAdmin')
+    })
+})
+
 
 app.post('/feedback', async (req, res)=>{
     const firstname = req.body.firstname
@@ -82,8 +107,8 @@ app.post('/feedback', async (req, res)=>{
     const nameBook = req.body.nameBook
     const country = req.body.country
     const feedback = req.body.feedback
-
-    const feedbackEntity = new Feedback({'firstname':firstname, 'lastname':lastname, 'mail':mail, 'nameBook':nameBook, 'country':country, 'feedback':feedback})
+    const replyFeedbackAdmin = req.replyFeedbackAdmin
+    const feedbackEntity = new Feedback({'firstname':firstname, 'lastname':lastname, 'mail':mail, 'nameBook':nameBook, 'country':country, 'feedback':feedback, 'replyFeedbackAdmin':replyFeedbackAdmin})
     
     await feedbackEntity.save()
 

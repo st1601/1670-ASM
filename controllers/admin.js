@@ -29,12 +29,12 @@ router.get('/login',(req,res)=>{
 })
 
 router.post('/register',(req,res)=>{
-    const name = req.body.txtName
+    const username = req.body.Username
     const role = req.body.Role
-    const pass= req.body.txtPassword
+    const pass = req.body.Password
 
     const objectToInsert = {
-        userName: name,
+        username: username,
         role:role,
         password: pass
     }
