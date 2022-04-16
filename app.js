@@ -13,9 +13,8 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/',(req,res)=>{
-    res.render('index',{userInfo:req.session.User})
-})
+const homeController = require('./controllers/home')
+app.use('/', homeController)
 
 app.get('/login', (req,res)=>{
     res.render('login')

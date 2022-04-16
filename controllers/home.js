@@ -8,6 +8,15 @@ const { collection } = require('./Feedback')
 
 router.use(express.urlencoded({extended:true}))
 
+router.get('/', async (req,res)=>{
+    const allBooks = await getAllObjects("Book");
+    const bestSellers = allBooks.filter(book => {
+        return book.bestSellers = true;
+    })
+    // console.log(allBooks);
+    console.log(bestSellers);
+    res.render('index',{userInfo:req.session.User, books: allBooks})
+})
 
 
 
