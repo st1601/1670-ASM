@@ -54,7 +54,7 @@ app.get('/register', (req,res)=>{
 })
 
 app.get('/single-product', (req,res)=>{
-    res.render('single-product')
+    res.render('single-product', )
 })
 
 app.get('/tracking-order', (req,res)=>{
