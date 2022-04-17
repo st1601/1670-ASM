@@ -17,10 +17,5 @@ router.get('/', async (req,res)=>{
     // const bestSellers = allBooks.filter(book => book.bestSellers = true
     // );
     // console.log(bestSellers);
-    res.render('index',{userInfo:req.session.User, books: allBooks})
+    res.render('category',{userInfo:req.session.User, books: allBooks})
 })
-
-
-
-
-module.exports = router;
