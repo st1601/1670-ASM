@@ -15,9 +15,8 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/',(req,res)=>{
-    res.render('index',{userInfo:req.session.User})
-})
+const homeController = require('./controllers/home')
+app.use('/', homeController)
 
 app.get('/home',(req,res)=>{
     res.render('home',{userInfo:req.session.User})
@@ -56,7 +55,7 @@ app.get('/register', (req,res)=>{
 })
 
 app.get('/single-product', (req,res)=>{
-    res.render('single-product')
+    res.render('single-product', )
 })
 
 app.get('/tracking-order', (req,res)=>{

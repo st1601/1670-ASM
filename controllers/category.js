@@ -8,8 +8,7 @@ const { collection } = require('./Feedback')
 
 router.use(express.urlencoded({extended:true}))
 
-
-
-
-
-module.exports = router;
+router.get('/', async (req,res)=>{
+    const allBooks = await getAllObjects("Book");
+    res.render('category',{books: allBooks})
+})
