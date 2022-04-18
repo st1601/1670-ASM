@@ -28,15 +28,19 @@ router.get('/login',(req,res)=>{
     res.render('login')
 })
 
-router.post('/register',(req,res)=>{
+
+
+router.post('/registerCustomer',(req,res)=>{
+    const name = req.body.Name
     const username = req.body.Username
     const role = req.body.Role
-    const pass = req.body.Password
+    const password = req.body.Password
 
     const objectToInsert = {
-        username: username,
+        name:name,
+        userName: username,
         role:role,
-        password: pass
+        password: password
     }
     insertObject(USER_TABLE_NAME,objectToInsert)
     res.render('home')
