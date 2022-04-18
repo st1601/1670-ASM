@@ -80,7 +80,11 @@ app.get('/feedback',(req,res)=>{
 app.get('/replyFeedback',(req,res)=>{
     res.render('replyFeedback')
 })
-
+app.post('/search',async (req,res)=>{
+    const searchText = req.body.txtSearch
+    const query = await Feedback.find({'nameBook':searchText})
+    res.render('viewFeedback',{feedbacks:query})
+})
 app.get('/viewFeedback', async (req,res)=>{
     const feedbacks = await Feedback.find()
     res.render('viewFeedback',{'feedbacks':feedbacks})
