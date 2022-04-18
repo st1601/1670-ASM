@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/feedback.css" />
     <title>View Feed Back</title>
+    <style>
+        #adminReply{
+        }
+    </style>
 </head>
 <body>
-    <center>
     <h1>All Feed Back</h1>
-    <table border="1" width ="80%" >
+    <table border="1" width ="60%" >
         <tr>
             <td>First Name</td>
             <td>Last Name</td>
@@ -18,10 +21,9 @@
             <td>Name Book</td>
             <td>Country</td>
             <td>Feed Back</td>
-            <td>Admin reply</td>
             <td>Reply</td>
         </tr>
-        {{#each feedbacks}}
+        {{#each feedbacks}} 
             <tr>
                     <td>{{firstname}}</td>
                     <td>{{lastname}}</td>
@@ -29,12 +31,21 @@
                     <td>{{nameBook}}</td>
                     <td>{{country}}</td>
                     <td>{{feedback}}</td>
-                    <td>{{replyFeedbackAdmin}}</td>
-                    <td><a class="replyFeedbackAdmin" href="/replyfeedback?id={{_id}}">Reply</a></td>
+                    <td><a href="replyFeedback">Reply</a></td>
+                    
             </tr>
         {{/each}}
+        <table id="adminReply" border="1">
+        <tr>
+            <td>Admin reply</td>
+        </tr>
+        {{#each replyFeedbacks}}
+        <tr>
+            <td>{{replyFeedback}}</td>
+        </tr>
+        {{/each}}
+    </table>
     </table>
         <a href="/">Back</a></li>
-    </center>
 </body>
 </html>
