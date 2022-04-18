@@ -10,12 +10,5 @@ router.use(express.urlencoded({extended:true}))
 
 router.get('/', async (req,res)=>{
     const allBooks = await getAllObjects("Book");
-    // const bestSellers = allBooks.filter(book => {
-    //     return book.bestSellers = true;
-    // })
-    // console.log(allBooks);
-    // const bestSellers = allBooks.filter(book => book.bestSellers = true
-    // );
-    // console.log(bestSellers);
-    res.render('category',{userInfo:req.session.User, books: allBooks})
+    res.render('category',{books: allBooks})
 })
