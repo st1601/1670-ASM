@@ -7,6 +7,40 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <center>
+    <h1>All List Book</h1>
+    <table border="1" width ="80%" >
+<thead style="background-color: yellow; color:black">
+                                            <tr class="table-primary">
+
+                                                <th scope="col" style="width: 370px;">ID</th>
+                                                <th scope="col" style="width: 370px;">Category</th>
+                                                {{!-- <th scope="col">Description</th> --}}
+                                                <th scope="col">Options</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each category}}
+                                            <tr>
+                                                <td class="items" style="width: 370px;">{{_id}}</td>
+                                                <td class="items" style="width: 370px;">{{name}}</td>
+
+                                                {{!-- <td class="items">{{description}}</td> --}}
+
+                                                <td>
+                                                    <button name="button" value="OK" type="button"><a
+                                                            onclick="return confirm('Do you want to delete the category?')"
+                                                            href="/admin/deleteCategory?id={{_id}}">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a></button>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+        </table>
+        <a href="home">Back</a></li>
+    </center>
 </body>
 </html>
