@@ -146,7 +146,10 @@ app.post('/addBook', async (req,res)=>{
 app.get('/addBook',(req,res)=>{
     res.render('addBook')
 })
-
+app.get('/manageBook', async (req,res)=>{
+    const books = await Book.find()
+    res.render('manageBook',{'books':books})
+})
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT)
