@@ -13,24 +13,61 @@
         <input type="text" name="txtSearch">
         <input type="submit" value="Search">
     </form>
-    <table border="1" width ="80%" >
-         <tr>
-      <th>Name toy</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Image</th>
-      <th>Edit</th>
-   </tr>
-        {{#each data}}
-        <tr>
-           <th>{{name}}</th> 
-           <th>{{quantity}}</th> 
-           <th> {{price}}VND</th>
-            <th> <img src="{{picture}}" width="150" height="100"/></th>
-            <th><a href="delete?id={{_id}}">Delete</a><br><a href="edit?id={{_id}}">Update</a></th> 
-        {{/each}} 
-    </tr> 
-    </table>
+    <table class="table table-hover table-bordered">
+                                        <thead style="background-color: yellow; color:black">
+                                            <tr class="table-primary">
+
+                                                {{!-- <th scope="col">ID</th> --}}
+                                                <th scope="col" style="width: 220px;">Name</th>
+                                                {{!-- <th scope="col">Category</th> --}}
+                                                <th scope="col" style="width: 100px;">Price</th>
+                                                <th scope="col" style="width: 100px;">Description</th>
+                                                <th scope="col" style="width: 300px;">Image</th>
+                                                <th scope="col">Options</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each products}}
+                                            <tr>
+                                                {{!-- <td class="items">{{_id}}</td> --}}
+                                                <td class="items" style="width: 220px;">{{name}}</td>
+                                                {{!-- <td class="items">{{category}}</td> --}}
+                                                <td class="items" style="width: 100px;">{{price}} VND</td>
+                                                <td class="items" style="width: 100px;">{{description}}</td>
+                                                <td class="items" style="width: 300px;"> <img src="{{imgURL}}"
+                                                        width="180px" height="200px">
+                                                </td>
+                                                <td>
+                                                    <button name="button" value="OK" type="button">
+                                                        {{!-- <a href="/admin/editProduct?id={{_id}}"
+                                                            class="btn btn-info btn-sm">
+                                                            <i class="fas fa-edit"></i></a> --}}
+                                                        <a href=""
+                                                            class="btn btn-info btn-sm">
+                                                            <i class="fas fa-edit"></i></a>
+                                                    </button>
+                                                    <button name="button" value="OK" type="button">
+                                                        {{!-- <a
+                                                            onclick="return confirm('Do you want to delete the product?')"
+                                                            href="/admin/deleteBook?id={{_id}}"
+                                                            class="btn btn-info btn-sm">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a> --}}
+                                                        <a
+                                                            {{!-- onclick="return confirm('Do you want to delete the product?')" --}}
+                                                            href=""
+                                                            class="btn btn-info btn-sm">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </button>
+
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
         <a href="home">Back</a></li>
     </center>
 </body>

@@ -133,42 +133,85 @@ app.post('/feedback', async (req, res)=>{
     res.redirect('/')
 })
 
-app.get('edit', async (req, res) => {
-    const id = req.query.id;
-    const p = await getProductById(id);
-    res.render("edit", { product: p });
-})
-app.post('update', async (req, res) => {
-    const nameInput = req.body.txtName;
-    const quantityInput = req.body.txtQuantity;
-    const priceInput = req.body.txtPrice;
-    const id = req.body.txtId;
+app.get('/deleteBook', async (req, res) => {
+    const id = req.query.id
+    const collectionName = 'Book'
+    await deleteProduct(collectionName, id)
+    res.redirect("manageBook")
 
-    updateProduct(id, nameInput, quantityInput, priceInput);
-    res.redirect("manageBook");
+})
+app.get('/manageBook', async (_req, res) => {
+
+    const collectionName = 'Book'
+    const dbo = await getDatabase();
+    const products = await getAllDocumentsFromCollection(collectionName);
+    // await changeIdToCategoryName(products, dbo);
+
+    res.render('managerBook', { products: products })
 })
 
-app.post('addBook', async (req, res) => {
-    const nameInput = req.body.txtName;
-    const quantityInput = req.body.txtQuantity;
-    const priceInput = req.body.txtPrice;
-    const pictureInput = req.body.txtPicture;  
-    if(priceInput.slice(-1) % 2 != 0 ){
-        res.render("addBook",{errorMsg:'Gia phai la so chan'})
-        return;
+router.get('/addBook', async (req, res) => {
+
+    const categories = await getAllDocumentsFromCollection('Category');
+    console.log(categories)
+    res.render('addBook', {categories: categories});
+})
+router.post('/addBook', async (req, res) => {
+    const name = req.body.txtName
+    const price = req.body.txtPrice
+    const picture = req.body.txtPicture
+    const category = req.body.txtCategory
+    const hot = req.body.txthot
+    const author = req.body.txtAuthor
+    const description = req.body.txtDescription
+    const collectionName = 'Book'
+
+    const newP = {
+        name: name, price: Number.parseFloat(price), imgURL: picture, author: author, description: description, category: category, hot: hot
     }
-    const newProduct = { name: nameInput, quantity: quantityInput, price: priceInput, picture: pictureInput }
-    insertProduct(newProduct);
-    res.redirect("manageBook");
+
+    await insertObjectToCollection(collectionName, newP);
+    const notify = "Add book successful"
+
+    res.render('addBook', { notify: notify })
 })
-app.get('addBook', (req, res)=>{
-    res.render('addBook')
+router.get('/updateBook', async (req, res) => {
+    const id = req.query.id
+    const collectionName = 'Book'
+    
+    const books = await getDocumentById(collectionName, id)
+    
+    const categories = await getAllDocumentsFromCollection('Category');
+    console.log(categories)
+
+    res.render('updateBook', {books:books, categories: categories})
 })
-app.get('delete', async (req, res) => {
-    const id = req.query.id;
-    await deleteProduct(id);
-    res.redirect("manageBook");
+
+router.post('/updateBook', async (req, res) => {
+    const id = req.body.txtId
+    const name = req.body.txtName
+    const price = req.body.txtPrice
+    const picture = req.body.txtImage
+    const category = req.body.txtCategory
+    const author = req.body.txtAuthor
+    const description = req.body.txtDescription
+    const collectionName = 'Book'
+
+    const newvalues = {
+        $set: {
+            name: name, category: category, price: Number.parseFloat(price),
+            description: description, imgURL: picture, author: author, category: category, hot: 'false'
+        }
+
+    }
+    await updateCollection(id, collectionName, newvalues);
+
+    
+    const notify = "Update book successful"
+
+    res.redirect('manageBook')
 })
+
 
 
 
