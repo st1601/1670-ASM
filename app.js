@@ -5,6 +5,7 @@ const Feedback = require('./controllers/Feedback')
 const ReplyFeedback = require('./controllers/ReplyFeedback')
 const session = require('express-session')
 const mongoose = require('mongoose');
+const {insertObject,checkUserRole,USER_TABLE_NAME} = require('./databaseHandler')
 app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
 app.use(express.static('../1670-ASM/public'));
 
@@ -52,6 +53,21 @@ app.get('/feedback', (req,res)=>{
 
 app.get('/register', (req,res)=>{
     res.render('register')
+})
+app.post('/register',(req,res)=>{
+    const name = req.body.Name
+    const username = req.body.Username
+    const role = req.body.Role
+    const password = req.body.Password
+
+    const objectToInsert = {
+        name:name,
+        userName: username,
+        role:role,
+        password: password
+    }
+    insertObject(USER_TABLE_NAME,objectToInsert)
+    res.render('/')
 })
 
 app.get('/single-product', (req,res)=>{
