@@ -16,7 +16,7 @@ router.post('/login',async (req,res)=>{
             'userName': name,
             'role': role 
         }
-        res.redirect('/')
+        res.redirect('home')
     }
 
 })
