@@ -133,33 +133,14 @@ app.post('/feedback', async (req, res)=>{
     res.redirect('/')
 })
 
-// app.post('/addBook', async (req,res)=>{
-//     const title = req.body.txtTitle
-//     const author = req.body.txtAuthor
-//     const bookEntity = new Book({'title': title, 'author':author})
+app.post('/addBook', async (req,res)=>{
+    const title = req.body.txtTitle
+    const author = req.body.txtAuthor
+    const bookEntity = new Book({'title': title, 'author':author})
     
-//     await bookEntity.save()
-//     res.redirect('manageBook')
+    await bookEntity.save()
+    res.redirect('manageBook')
 
-// })
-app.get('/book', async (req, res) => {
-
-    const collectionName = 'Book'
-
-    const books = await getAllDocumentsFromCollection(collectionName);
-
-    // await changeIdToCategoryName(products, dbo);
-
-    res.render('product', { books: books })
-})
-
-app.get('/category', async (_req, res) => {
-
-    const collectionName = 'Category'
-
-    const category = await getAllDocumentsFromCollection(collectionName);
-
-    res.render('category', { category: category })
 })
 
 app.get('/addBook',(req,res)=>{
@@ -169,13 +150,7 @@ app.get('/manageBook', async (req,res)=>{
     const books = await Book.find()
     res.render('manageBook',{'books':books})
 })
-// app.get('/addCategory',(req,res)=>{
-//     res.render('addCategory')
-// })
-// app.get('/manageCategory', async (req,res)=>{
-//     const categorys = await Category.find()
-//     res.render('manageCategory',{'categorys':categorys})
-// })
+
 
 
 const PORT = process.env.PORT || 5000

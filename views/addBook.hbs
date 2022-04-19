@@ -17,12 +17,69 @@
 </head>
 <body>
     <h1>NewBook</h1>
-    <form action="addook" method="post">
-        Book title: <input type="text" name="txtTitle">
-        <br>
-        Author  <input type="text" name="txtAuthor">
-        <br>
-        <input type="submit" value="SaveBook">
+    <form action="addBook" method="post">
+        <div class="row">
+            <div class="col-25">    
+                <label for="fname">First Name</label></div>    
+            <div class="col-75">
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">    
+            </div>
+        </div>
+        <div class="row">    
+            <div class="col-25">    
+                <label for="lname">Last Name</label>
+            </div>    
+                <div class="col-75">    
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">    
+            </div>
+        </div>
+        <div class="row">    
+            <div class="col-25">    
+                <label for="email">Mail</label>    
+            </div>    
+            <div class="col-75">    
+                <input type="email" id="email" name="mail" placeholder="Your mail ..">    
+            </div>    
+        </div>
+        <div class="row">    
+            <div class="col-25">    
+                <label for="lname">Name Book</label>
+            </div>    
+                <div class="col-75">    
+                <input type="text" id="nameBook" name="nameBook" placeholder="Name Book..">    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">    
+                <label for="country">Country</label>    
+            </div>
+            <div class="col-75">    
+                <select id="country" name="country">
+                    <option value="none">Select Country</option>    
+                    <option value="australia">Australia</option>    
+                    <option value="canada">Canada</option>    
+                    <option value="usa">USA</option>    
+                    <option value="russia">Russia</option>    
+                    <option value="japan">Japan</option>    
+                    <option value="india">India</option>    
+                    <option value="china">China</option>
+                    <option value="vietnamese">Vietnamese</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">    
+            <div class="col-25">    
+                <label for="feed_back">Feed Back</label>    
+            </div>
+            <div class="col-75">    
+                <textarea id="subject" name="feedback" placeholder="Write something.." style="height:200px"></textarea>    
+            </div>
+        </div>
+        <center>
+        <div class="row">    
+            <input type="submit" value="Add">    
+        </div>
+        </center>  
     </form>
 </body>
 </html>

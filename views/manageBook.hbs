@@ -14,15 +14,24 @@
         <input type="submit" value="Search">
     </form>
     <table border="1" width ="80%" >
-        <tr>
+         <tr>
             <td>First Name</td>
             <td>Last Name</td>
+            <td>Mail</td>
+            <td>Name Book</td>
+            <td>Country</td>
+            <td>Feed Back</td>
+            <td>Admin reply</td>
         </tr>
         {{#each feedbacks}}
             <tr>
-                    <td>{{title}}</td>
-                    <td>{{author}}</td>
-                   
+                    <td>{{firstname}}</td>
+                    <td>{{lastname}}</td>
+                    <td>{{mail}}</td>
+                    <td>{{nameBook}}</td>
+                    <td>{{country}}</td>
+                    <td>{{feedback}}</td>
+                    <td>{{reply}}</td>
             </tr>
         {{/each}}
     </table>
