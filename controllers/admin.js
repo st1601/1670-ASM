@@ -26,22 +26,6 @@ router.post('/login',async (req,res)=>{
 
 })
 
-router.post('/addBook', async (req,res)=>{
-    const title = req.body.txtTitle
-    const author = req.body.txtAuthor
-
-    const objectToInsert = {
-        'title': title,
-        'author':author
-    }
-    insertObject(BOOK_TABLE_NAME,objectToInsert)
-    res.render('home')
-
-})
-
-router.get('/addBook',(req,res)=>{
-    res.render('addBook')
-})
 
 
 
