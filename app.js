@@ -133,22 +133,41 @@ app.post('/feedback', async (req, res)=>{
     res.redirect('/')
 })
 
-app.post('/addBook', async (req,res)=>{
-    const title = req.body.txtTitle
-    const author = req.body.txtAuthor
-    const bookEntity = new Book({'title': title, 'author':author})
-    
-    await bookEntity.save()
-    res.redirect('manageBook')
+app.get('edit', async (req, res) => {
+    const id = req.query.id;
+    const p = await getProductById(id);
+    res.render("edit", { product: p });
+})
+app.post('update', async (req, res) => {
+    const nameInput = req.body.txtName;
+    const quantityInput = req.body.txtQuantity;
+    const priceInput = req.body.txtPrice;
+    const id = req.body.txtId;
 
+    updateProduct(id, nameInput, quantityInput, priceInput);
+    res.redirect("manageBook");
 })
 
-app.get('/addBook',(req,res)=>{
+app.post('addBook', async (req, res) => {
+    const nameInput = req.body.txtName;
+    const quantityInput = req.body.txtQuantity;
+    const priceInput = req.body.txtPrice;
+    const pictureInput = req.body.txtPicture;  
+    if(priceInput.slice(-1) % 2 != 0 ){
+        res.render("addBook",{errorMsg:'Gia phai la so chan'})
+        return;
+    }
+    const newProduct = { name: nameInput, quantity: quantityInput, price: priceInput, picture: pictureInput }
+    insertProduct(newProduct);
+    res.redirect("manageBook");
+})
+app.get('addBook', (req, res)=>{
     res.render('addBook')
 })
-app.get('/manageBook', async (req,res)=>{
-    const books = await Book.find()
-    res.render('manageBook',{'books':books})
+app.get('delete', async (req, res) => {
+    const id = req.query.id;
+    await deleteProduct(id);
+    res.redirect("manageBook");
 })
 
 

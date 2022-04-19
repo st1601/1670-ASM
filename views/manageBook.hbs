@@ -15,25 +15,21 @@
     </form>
     <table border="1" width ="80%" >
          <tr>
-            <td>First Name</td>
-            <td>Last Name</td>
-            <td>Mail</td>
-            <td>Name Book</td>
-            <td>Country</td>
-            <td>Feed Back</td>
-            <td>Admin reply</td>
-        </tr>
-        {{#each feedbacks}}
-            <tr>
-                    <td>{{firstname}}</td>
-                    <td>{{lastname}}</td>
-                    <td>{{mail}}</td>
-                    <td>{{nameBook}}</td>
-                    <td>{{country}}</td>
-                    <td>{{feedback}}</td>
-                    <td>{{reply}}</td>
-            </tr>
-        {{/each}}
+      <th>Name toy</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Image</th>
+      <th>Edit</th>
+   </tr>
+        {{#each data}}
+        <tr>
+           <th>{{name}}</th> 
+           <th>{{quantity}}</th> 
+           <th> {{price}}VND</th>
+            <th> <img src="{{picture}}" width="150" height="100"/></th>
+            <th><a href="delete?id={{_id}}">Delete</a><br><a href="edit?id={{_id}}">Update</a></th> 
+        {{/each}} 
+    </tr> 
     </table>
         <a href="home">Back</a></li>
     </center>
