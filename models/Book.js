@@ -1,7 +1,7 @@
-const mongoose = require('mongodb');
-const Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+    , Schema = mongoose.Schema
 
-const Book = Schema({
+var Book = Schema({
     title: {type: String, maxLength: 255},
     author: {type: String, maxLength: 255},
 
