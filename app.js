@@ -27,6 +27,7 @@ app.get('/login', (req,res)=>{
     res.render('login')
 })
 
+
 app.get('/category', (req,res)=>{
     res.render('category')
 })

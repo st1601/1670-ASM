@@ -3,10 +3,15 @@ const async = require('hbs/lib/async')
 const router = express.Router()
 const {insertObject,checkUserRole,USER_TABLE_NAME} = require('../databaseHandler')
 
+
+
+router.get('/login',(req,res)=>{
+    res.render('login')
+})
 router.post('/login',async (req,res)=>{
     const name = req.body.txtName
     const pass= req.body.txtPassword
-    const role =await checkUserRole(name,pass)
+    const role = await checkUserRole(name,pass)
     if (role=="-1"){
         res.render('login')
         return
@@ -20,11 +25,6 @@ router.post('/login',async (req,res)=>{
     }
 
 })
-
-router.get('/login',(req,res)=>{
-    res.render('login')
-})
-
 
 
 
