@@ -150,13 +150,43 @@ app.get('/manageBook', async (_req, res) => {
     res.render('managerBook', { products: products })
 })
 
-router.get('/addBook', async (req, res) => {
+app.get('/addBook', async (req, res) => {
 
     const categories = await getAllDocumentsFromCollection('Category');
     console.log(categories)
     res.render('addBook', {categories: categories});
 })
-router.post('/addBook', async (req, res) => {
+app.post('/addCategory', async (req, res) => {
+    const name = req.body.txtName
+    const description = req.body.txtDescription
+    const collectionName = 'Category'
+
+    const newP = { name: name, description: description }
+
+    await insertObjectToCollection(collectionName, newP);
+    const notify = "Add category successful"
+
+    res.render('addCategory', { notify: notify })
+})
+app.get('/addCategory', (req, res) => {
+    res.render('addCategory')
+})
+app.get('/deleteBook', async (req, res) => {
+    const id = req.query.id
+    const collectionName = 'Book'
+    await deleteProduct(collectionName, id)
+    res.redirect("manageBook")
+
+})
+app.get('/deleteCategory', async (req, res) => {
+    const id = req.query.id
+    const collectionName = 'Category'
+    await deleteProduct(collectionName, id)
+
+    res.redirect("manageCategory")
+
+})
+app.post('/addBook', async (req, res) => {
     const name = req.body.txtName
     const price = req.body.txtPrice
     const picture = req.body.txtPicture
@@ -175,7 +205,7 @@ router.post('/addBook', async (req, res) => {
 
     res.render('addBook', { notify: notify })
 })
-router.get('/updateBook', async (req, res) => {
+app.get('/updateBook', async (req, res) => {
     const id = req.query.id
     const collectionName = 'Book'
     
@@ -187,7 +217,7 @@ router.get('/updateBook', async (req, res) => {
     res.render('updateBook', {books:books, categories: categories})
 })
 
-router.post('/updateBook', async (req, res) => {
+app.post('/updateBook', async (req, res) => {
     const id = req.body.txtId
     const name = req.body.txtName
     const price = req.body.txtPrice
@@ -211,7 +241,12 @@ router.post('/updateBook', async (req, res) => {
 
     res.redirect('manageBook')
 })
+router.get('manageCategory', async (_req, res) => {
+    const collectionName = 'Category'
 
+    const category = await getAllDocumentsFromCollection(collectionName);
+    res.render('manageCategory', { category: category })
+})
 
 
 

@@ -7,21 +7,37 @@
     <title>Document</title>
 </head>
 <body>
-     <h1>NewCategory</h1>
-    <form action="addCategory" method="post">
-        <div class="mb-3"
-                                        style="margin-left: 31%; margin-top: 3%; font-size: 20px; font-weight:bold">
-                                        Add new Category:<input type="text" placeholder="name" name="txtName" value=""
-                                            class="form-control" style="margin-left: 20px;">
-                                    </div>
-                                    <br>
-                                    {{!-- <div class="mb-3">
-                                        <input type="text" name="txtDescription" placeholder="description" value=""
-                                            class="form-control">
-                                    </div> --}}
-                                    <div class="mb-3" style="margin-left: 48.2%;">
-                                        <input type="submit" value="Add Category" class="form-control">
-                                    </div>
-    </form>
+     <h1>New Category</h1>
+    <table class="table table-hover table-bordered">
+                                        <thead style="background-color: yellow; color:black">
+                                            <tr class="table-primary">
+
+                                                <th scope="col" style="width: 370px;">ID</th>
+                                                <th scope="col" style="width: 370px;">Category</th>
+                                                {{!-- <th scope="col">Description</th> --}}
+                                                <th scope="col">Options</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each category}}
+                                            <tr>
+                                                <td class="items" style="width: 370px;">{{_id}}</td>
+                                                <td class="items" style="width: 370px;">{{name}}</td>
+
+                                                {{!-- <td class="items">{{description}}</td> --}}
+
+                                                <td>
+                                                    <button name="button" value="OK" type="button"><a
+                                                            onclick="return confirm('Do you want to delete the category?')"
+                                                            href="/admin/deleteCategory?id={{_id}}">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a></button>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
 </body>
 </html>
