@@ -241,7 +241,7 @@ app.post('/updateBook', async (req, res) => {
 
     res.redirect('manageBook')
 })
-router.get('manageCategory', async (_req, res) => {
+app.get('manageCategory', async (_req, res) => {
     const collectionName = 'Category'
 
     const category = await getAllDocumentsFromCollection(collectionName);
