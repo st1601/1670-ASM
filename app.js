@@ -3,6 +3,7 @@ const app = express()
 const async = require('hbs/lib/async')
 const Feedback = require('./controllers/Feedback')
 const ReplyFeedback = require('./controllers/ReplyFeedback')
+const Book = require('./models/Book')
 const session = require('express-session')
 const mongoose = require('mongoose');
 const {insertObject,checkUserRole,USER_TABLE_NAME} = require('./databaseHandler')
@@ -118,7 +119,6 @@ app.post('/replyFeedback',async (req, res)=>{
     res.redirect('viewFeedbackAdmin')
 })
 
-
 app.post('/feedback', async (req, res)=>{
     const firstname = req.body.firstname
     const lastname = req.body.lastname
@@ -132,6 +132,21 @@ app.post('/feedback', async (req, res)=>{
 
     res.redirect('/')
 })
+
+app.post('/addBook', async (req,res)=>{
+    const title = req.body.txtTitle
+    const author = req.body.txtAuthor
+    const bookEntity = new Book({'title': title, 'author':author})
+    
+    await bookEntity.save()
+    res.redirect('manageBook')
+
+})
+
+app.get('/addBook',(req,res)=>{
+    res.render('addBook')
+})
+
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT)
