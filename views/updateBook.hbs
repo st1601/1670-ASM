@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <center>
+    <h1>Update Book</h1>
+    <form action="updateBook" method="post" style="text-align: center;">
+                <fieldset
+                  style="display: block; font-weight: bold; border: 1px solid #000; width: 80%; margin: 50px 125px; background-color: rgba(245, 245, 245, 0.336)">
+                  <legend style="color: red; text-align:center; font-size:30px;">Edit Product</legend>
+                  <input type="hidden" name="txtId" value="{{books._id}}">
+                  <label for="name">Book's name: </label>
+                  <input type="text" name="txtName" id="txtName" value="{{books.name}}">
+                  <br><br>
+                  <label for="category">Category: </label>
+                  <select name="txtCategory">
+                    {{#each categories}}
+                    <option value="{{name}}">{{name}}</option>
+                    {{/each}}
+                  </select>
+                  <br><br>
+                  <label for="category">Price: </label>
+                  <input type="text" name="txtPrice" id="txtPrice" value="{{books.price}}">
+                  <br><br>
+                  <label for="category">Author: </label>
+                  <input style="width: 40%;" type="text" name="txtAuthor" id="txtAuthor" value="{{books.author}}">
+                  <br><br>
+                  <label for="category">Description: </label>
+                  <input style="width: 40%;" type="text" name="txtDescription" id="txtDescription"
+                    value="{{books.description}}">
+                  <br><br>
+
+                  <label for="img">URL Image:</label>
+                  <div style="display: inline;">
+                    <center>
+                    <input style="width: 35%;" type="text" name="txtImage" id="txtImage" value="{{books.imgURL}}">
+                  </div>
+                  <br>
+                  <span style="color: orangered;"></span>
+                  <br><br>
+                  <button type="submit" class="btn btn-primary">Edit</button>
+                </fieldset>
+
+              </form>
+              </center>
+</body>
+</html>
