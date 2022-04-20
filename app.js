@@ -195,13 +195,14 @@ app.post('/addCategory', async (req, res) => {
     const description = req.body.txtDescription
     const collectionName = 'Category'
 
-    // const newP = { name: name, description: description }
+    const newP = { name: name, description: description }
 
-    // // await insertObjectToCollection(collectionName, newP);
-    // const notify = "Add category successful"
+    // await insertObjectToCollection(collectionName, newP);
+    const notify = "Add category successful"
 
-    // res.render('manageCategory', { notify: notify })
-
+    res.render('manageCategory', )
+    { notify: notify }
+    })
 
 app.get('/addCategory', (req, res) => {
     res.render('addCategory')
