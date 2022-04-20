@@ -177,9 +177,9 @@ app.get('/manageBook', async (_req, res) => {
     const collectionName = 'Book'
     const dbo = await getDatabase();
     const books = await getAllDocumentsFromCollection(collectionName);
-    await changeIdToCategoryName(books, dbo);
+    // await changeIdToCategoryName(books, dbo);
 
-    res.render('manageBook', { books: Books })
+    res.render('manageBook', { books: books })
     // 
 })
 
@@ -190,86 +190,119 @@ app.get('/addBook', async (req, res) => {
     // res.render('addBook', {category: category});
     res.render('addBook')
 })
-app.post('/addCategory', async (req, res) => {
-    const name = req.body.txtName
-    const description = req.body.txtDescription
-    const collectionName = 'Category'
-
-    const newP = { name: name, description: description }
-
-   await insertObjectToCollection(collectionName, newP);
-    const notify = "Add category successful"
-
-    res.render('manageCategory', )
-    { notify: notify }
-    })
-
-app.get('/addCategory', (req, res) => {
-    res.render('addCategory')
-})
-
-app.get('/deleteBook', async (req, res) => {
-    const id = req.query.id
-    const collectionName = 'Book'
-    await deleteProduct(collectionName, id)
-    res.redirect("manageBook")
-
-})
-app.get('/deleteCategory', async (req, res) => {
-    const id = req.query.id
-    const collectionName = 'Category'
-    await deleteProduct(collectionName, id)
-
-    res.redirect("manageCategory")
-
-})
-
-app.get('/updateBook', async (req, res) => {
-    const id = req.query.id
-    const collectionName = 'Book'
-    
-    const books = await getDocumentById(collectionName, id)
-    
-    const categories = await getAllDocumentsFromCollection('Category');
-    console.log(categories)
-
-    res.render('updateBook', {books:books, categories: categories})
-})
-
-app.post('/updateBook', async (req, res) => {
-    const id = req.body.txtId
+app.post('/addBook', async (req, res) => {
     const name = req.body.txtName
     const price = req.body.txtPrice
-    const picture = req.body.txtImage
+    const picture = req.body.txtPicture
     const category = req.body.txtCategory
+    const quantity = req.body.txtQuantity
     const author = req.body.txtAuthor
-    const description = req.body.txtDescription
+    const published = req.body.txtPublished
     const collectionName = 'Book'
 
-    const newvalues = {
-        $set: {
-            name: name, category: category, price: Number.parseFloat(price),
-            description: description, imgURL: picture, author: author, category: category, hot: 'false'
-        }
-
+    const newB = {
+        'name': name, 
+        'price': price, 
+        'picture': picture, 
+        'author': author, 
+        'published': published, 
+        'category': category, 
+        'quantity': quantity
     }
-    await updateCollection(id, collectionName, newvalues);
+
+    await insertObjectToCollection(collectionName, newB);
+    // const notify = "Add book successful"
+
+    res.render('manageBook')
+})
+// app.post('/addCategory', async (req, res) => {
+//     const name = req.body.txtName
+//     const description = req.body.txtDescription
+//     const collectionName = 'Category'
+
+//     const newP = { name: name, description: description }
+
+//    await insertObjectToCollection(collectionName, newP);
+//     const notify = "Add category successful"
+
+//     res.render('manageCategory', )
+//     { notify: notify }
+//     })
+
+// app.get('/addCategory', (req, res) => {
+//     res.render('addCategory')
+// })
+
+// app.get('/deleteBook', async (req, res) => {
+//     const id = req.query.id
+//     const collectionName = 'Book'
+//     await deleteProduct(collectionName, id)
+//     res.redirect("manageBook")
+
+// })
+// app.get('/deleteCategory', async (req, res) => {
+//     const id = req.query.id
+//     const collectionName = 'Category'
+//     await deleteProduct(collectionName, id)
+
+//     res.redirect("manageCategory")
+
+// })
+
+// app.get('/updateBook', async (req, res) => {
+//     const id = req.query.id
+//     const collectionName = 'Book'
+    
+//     const books = await getDocumentById(collectionName, id)
+    
+//     const categories = await getAllDocumentsFromCollection('Category');
+//     console.log(categories)
+
+//     res.render('updateBook', {books:books, categories: categories})
+// })
+
+// app.post('/updateBook', async (req, res) => {
+//     const id = req.body.txtId
+//     const name = req.body.txtName
+//     const price = req.body.txtPrice
+//     const picture = req.body.txtImage
+//     const category = req.body.txtCategory
+//     const author = req.body.txtAuthor
+//     const description = req.body.txtDescription
+//     const collectionName = 'Book'
+
+//     const newvalues = {
+//         $set: {
+//             name: name, category: category, price: Number.parseFloat(price),
+//             description: description, imgURL: picture, author: author, category: category, hot: 'false'
+//         }
+
+//     }
+//     await updateCollection(id, collectionName, newvalues);
 
     
-    const notify = "Update book successful"
+//     const notify = "Update book successful"
 
-    res.redirect('manageBook')
-})
-app.get('/manageCategory', async (_req, res) => {
-    const collectionName = 'Category'
+//     res.redirect('manageBook')
+// })
+// app.get('/manageCategory', async (_req, res) => {
+//     const collectionName = 'Category'
 
-     const category = await getAllDocumentsFromCollection(collectionName);
-    res.render('manageCategory', { category: category })
+//      const category = await getAllDocumentsFromCollection(collectionName);
+//     res.render('manageCategory', { category: category })
 
-})
+// })
 
 
-
+app.get('/manageBook', async (req, res) => {
+        const collectionName = 'Book'
+        const dbo = await getDatabase();
+        const books = await getAllDocumentsFromCollection(collectionName);
+        // await changeIdToCategoryName(books, dbo);
+    
+        res.render('manageBook', { books: books })
+        // 
+    })
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT)

@@ -164,6 +164,15 @@ router.post('/addBook', async (req, res) => {
 
     res.render('manageBook')
 })
+// router.get('/manageBook', async (req, res) => {
+//     const collectionName = 'Book'
+//     const dbo = await getDatabase();
+//     const books = await getAllDocumentsFromCollection(collectionName);
+//     // await changeIdToCategoryName(books, dbo);
+
+//     res.render('manageBook', { books: books })
+//     // 
+// })
 router.get('/login',(req,res)=>{
     res.render('login')
 })

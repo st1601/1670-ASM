@@ -51,7 +51,11 @@ async function getCurrentUserSession(req,res){
         return curUser;
     }
 }
-
+async function getAllDocumentsFromCollection(collectionName) {
+    const dbo = await getDatabase();
+    const products = await dbo.collection(collectionName).find({}).toArray();
+    return products;
+}
 
 const BOOK_TABLE_NAME = "Books"
-module.exports = {insertObject,checkUserRole,getDatabase,getAllObjects,insertObjectToCollection,getCurrentUserSession,USER_TABLE_NAME,BOOK_TABLE_NAME}
+module.exports = {getAllDocumentsFromCollection,insertObject,checkUserRole,getDatabase,getAllObjects,insertObjectToCollection,getCurrentUserSession,USER_TABLE_NAME,BOOK_TABLE_NAME}
