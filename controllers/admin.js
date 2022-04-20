@@ -3,7 +3,10 @@ const async = require('hbs/lib/async')
 const router = express.Router()
 const {insertObject,checkUserRole,USER_TABLE_NAME} = require('../databaseHandler')
 
+const { ObjectId } = require('mongodb')
 
+const { getDatabase, deleteProduct, getAllDocumentsFromCollection,
+    getDocumentById, insertObjectToCollection, updateCollection } = require('../databaseHandler')
 
 
 router.get('/deleteBook', async (req, res) => {
