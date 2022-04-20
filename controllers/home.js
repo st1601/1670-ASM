@@ -13,7 +13,4 @@ router.get('/', async (req,res)=>{
     res.render('index',{userInfo:req.session.User, books: allBooks})
 })
 
-
-
-
 module.exports = router;
