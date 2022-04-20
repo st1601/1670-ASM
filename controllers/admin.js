@@ -23,7 +23,7 @@ router.get('/manageBook', async (_req, res) => {
     res.render('managerBook', { products: products })
 })
 
-router.get('/addBook', async (req, res) => {
+router.get('/admin/addBook', async (req, res) => {
 
     const categories = await getAllDocumentsFromCollection('Category');
     console.log(categories)
@@ -73,7 +73,7 @@ router.post('/addBook', async (req, res) => {
         name: name, price: Number.parseFloat(price), imgURL: picture, author: author, description: description, category: category, hot: hot
     }
 
-    await insertObjectToCollection(collectionName, newP);
+    // await insertObjectToCollection(collectionName, newP);
     const notify = "Add book successful"
 
     res.render('addBook', { notify: notify })
@@ -114,7 +114,7 @@ router.post('/updateBook', async (req, res) => {
 
     res.redirect('manageBook')
 })
-router.get('manageCategory', async (_req, res) => {
+router.get('/manageCategory', async (_req, res) => {
     const collectionName = 'Category'
 
     const category = await getAllDocumentsFromCollection(collectionName);
