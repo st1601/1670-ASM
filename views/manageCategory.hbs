@@ -16,6 +16,65 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand logo_h" href="home.hbs"><img src="img/FPT.png" width="130" alt=""></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item active"><a class="nav-link" href="/home">Home</a></li>
+              <li class="nav-item submenu dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Book</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="manageBook">View Book</a></li>
+                  <li class="nav-item"><a class="nav-link" href="addBook">Add Book</a></li>
+                </ul>
+				</li>
+				  <li class="nav-item submenu dropdown">
+				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Category</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="manageCategory">View Category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="addCategory">Add Category</a></li>
+                </ul>
+				</li>
+				<li class="nav-item submenu dropdown">
+				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Order</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="">Manager Order</a></li>
+                  <li class="nav-item"><a class="nav-link" href="replyFeedback">Reply Feedback</a></li>
+                </ul>
+					</li>
+							<li class="nav-item submenu dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Pages</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="register">Register</a></li>
+                  <li class="nav-item"><a class="nav-link" href="viewFeedback">View Feed Back</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item"><a class="nav-link" href="">Logout</a></li>
+
+              
+            </ul>
+
+           
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
     <center>
     <h1>All List Book</h1>
     <table class="table table-hover table-bordered">
