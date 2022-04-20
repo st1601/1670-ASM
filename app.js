@@ -182,12 +182,12 @@ app.post('/feedback', async (req, res)=>{
 //     res.render('managerBook', { products: products })
 // })
 
-// app.get('/addBook', async (req, res) => {
+app.get('/addBook', async (req, res) => {
 
-//     const categories = await getAllDocumentsFromCollection('Category');
-//     console.log(categories)
-//     res.render('addBook', {categories: categories});
-// })
+    // const categories = await getAllDocumentsFromCollection('Category');
+    // console.log(categories)
+    // res.render('addBook', {categories: categories});
+})
 // app.post('/addCategory', async (req, res) => {
 //     const name = req.body.txtName
 //     const description = req.body.txtDescription
