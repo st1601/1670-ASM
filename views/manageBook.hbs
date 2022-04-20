@@ -89,7 +89,9 @@
                                                 <th scope="col" style="width: 220px;">Name</th>
                                                 {{!-- <th scope="col">Category</th> --}}
                                                 <th scope="col" style="width: 100px;">Price</th>
-                                                <th scope="col" style="width: 100px;">Description</th>
+                                                <th scope="col" style="width: 100px;">Category</th>
+                                                <th scope="col" style="width: 100px;">Author</th>
+                                                <th scope="col" style="width: 100px;">Publisher</th>
                                                 <th scope="col" style="width: 300px;">Image</th>
                                                 <th scope="col">Options</th>
 
@@ -103,26 +105,28 @@
                                                 <td class="items" style="width: 220px;">{{name}}</td>
                                                 {{!-- <td class="items">{{category}}</td> --}}
                                                 <td class="items" style="width: 100px;">{{price}} VND</td>
+                                                <td class="items" style="width: 100px;">{{category}}</td>
+                                                <td class="items" style="width: 100px;">{{author}}</td>
                                                 <td class="items" style="width: 100px;">{{description}}</td>
                                                 <td class="items" style="width: 300px;"> <img src="{{imgURL}}"
                                                         width="180px" height="200px">
                                                 </td>
                                                 <td>
                                                     <button name="button" value="OK" type="button">
-                                                        {{!-- <a href="/admin/editProduct?id={{_id}}"
+                                                        <a href="/admin/editProduct?id={{_id}}"
                                                             class="btn btn-info btn-sm">
-                                                            <i class="fas fa-edit"></i></a> --}}
+                                                            <i class="fas fa-edit"></i></a>
                                                         <a href=""
                                                             class="btn btn-info btn-sm">
                                                             <i class="fas fa-edit"></i></a>
                                                     </button>
                                                     <button name="button" value="OK" type="button">
-                                                        {{!-- <a
+                                                        <a
                                                             onclick="return confirm('Do you want to delete the product?')"
                                                             href="/admin/deleteBook?id={{_id}}"
                                                             class="btn btn-info btn-sm">
                                                             <i class="fas fa-trash"></i>
-                                                        </a> --}}
+                                                        </a>
                                                         <a
                                                             {{!-- onclick="return confirm('Do you want to delete the product?')" --}}
                                                             href=""
