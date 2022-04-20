@@ -175,19 +175,19 @@ app.get('/deleteBook', async (req, res) => {
 app.get('/manageBook', async (_req, res) => {
 
     const collectionName = 'Book'
-    // const dbo = await getDatabase();
-    // const products = await getAllDocumentsFromCollection(collectionName);
-    // await changeIdToCategoryName(products, dbo);
+    const dbo = await getDatabase();
+    const books = await getAllDocumentsFromCollection(collectionName);
+    await changeIdToCategoryName(books, dbo);
 
-    res.render('manageBook', )
-    // { products: Products }
+    res.render('manageBook', { books: Books })
+    // 
 })
 
 app.get('/addBook', async (req, res) => {
 
-    // const categories = await getAllObjects('Category');
-    // console.log(categories)
-    // res.render('addBook', {categories: categories});
+    // const category = await getAllObjects('Category');
+    // console.log(category)
+    // res.render('addBook', {category: category});
     res.render('addBook')
 })
 app.post('/addCategory', async (req, res) => {
@@ -197,7 +197,7 @@ app.post('/addCategory', async (req, res) => {
 
     const newP = { name: name, description: description }
 
-    // await insertObjectToCollection(collectionName, newP);
+   await insertObjectToCollection(collectionName, newP);
     const notify = "Add category successful"
 
     res.render('manageCategory', )
@@ -223,32 +223,7 @@ app.get('/deleteCategory', async (req, res) => {
     res.redirect("manageCategory")
 
 })
-app.get('/addBook', async (req, res) => {
 
-    // const categories = await getAllDocumentsFromCollection('Category');
-    // console.log(categories)
-    res.render('addBook',)
-    // {categories: categories}
-})
-app.post('/addBook', async (req, res) => {
-    const name = req.body.txtName
-    const price = req.body.txtPrice
-    const picture = req.body.txtPicture
-    const category = req.body.txtCategory
-    const hot = req.body.txthot
-    const author = req.body.txtAuthor
-    const description = req.body.txtDescription
-    const collectionName = 'Book'
-
-    const newP = {
-        name: name, price: Number.parseFloat(price), imgURL: picture, author: author, description: description, category: category, hot: hot
-    }
-
-    // await insertObjectToCollection(collectionName, newP);
-    const notify = "Add book successful"
-
-    res.render('manageBook', { notify: notify })
-})
 app.get('/updateBook', async (req, res) => {
     const id = req.query.id
     const collectionName = 'Book'
@@ -288,10 +263,11 @@ app.post('/updateBook', async (req, res) => {
 app.get('/manageCategory', async (_req, res) => {
     const collectionName = 'Category'
 
-    // const category = await getAllDocumentsFromCollection(collectionName);
-    res.render('manageCategory', )
-    // { category: category }
+     const category = await getAllDocumentsFromCollection(collectionName);
+    res.render('manageCategory', { category: category })
+
 })
+
 
 
 

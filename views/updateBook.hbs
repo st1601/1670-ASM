@@ -9,44 +9,34 @@
 <body>
      <center>
     <h1>Update Book</h1>
-    <form action="updateBook" method="post" style="text-align: center;">
-                <fieldset
-                  style="display: block; font-weight: bold; border: 1px solid #000; width: 80%; margin: 50px 125px; background-color: rgba(245, 245, 245, 0.336)">
-                  <legend style="color: red; text-align:center; font-size:30px;">Edit Product</legend>
-                  <input type="hidden" name="txtId" value="{{books._id}}">
-                  <label for="name">Book's name: </label>
-                  <input type="text" name="txtName" id="txtName" value="{{books.name}}">
-                  <br><br>
-                  <label for="category">Category: </label>
-                  <select name="txtCategory">
-                    {{#each categories}}
-                    <option value="{{name}}">{{name}}</option>
-                    {{/each}}
-                  </select>
-                  <br><br>
-                  <label for="category">Price: </label>
-                  <input type="text" name="txtPrice" id="txtPrice" value="{{books.price}}">
-                  <br><br>
-                  <label for="category">Author: </label>
-                  <input style="width: 40%;" type="text" name="txtAuthor" id="txtAuthor" value="{{books.author}}">
-                  <br><br>
-                  <label for="category">Description: </label>
-                  <input style="width: 40%;" type="text" name="txtDescription" id="txtDescription"
-                    value="{{books.description}}">
-                  <br><br>
-
-                  <label for="img">URL Image:</label>
-                  <div style="display: inline;">
-                    <center>
-                    <input style="width: 35%;" type="text" name="txtImage" id="txtImage" value="{{books.imgURL}}">
-                  </div>
-                  <br>
-                  <span style="color: orangered;"></span>
-                  <br><br>
-                  <button type="submit" class="btn btn-primary">Edit</button>
-                </fieldset>
-
-              </form>
+    <form method="post" action="/product/edit">
+            <input type="hidden" name="txtId" value="{{product._id}}">
+				<div class="form-group">
+					<label>Product Name :</label>
+					<input class="form-control" type="text" name="txtName" value="{{product.name}}">
+				</div>
+				<div class="form-group">
+					<label >Category Name :</label>
+					<select class="form-control" name="txtCategory"  id="{{product.categories}}" >
+						<option value="{{product.category._id}}" selected>{{product.category.name}}</option>
+                        {{#each categories as |cat|}}
+                        <option value="{{cat._id}}">{{cat.name}}</option>
+                        {{/each}}
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Price :</label>
+					<input class="form-control" type="text" name="txtPrice" value="{{product.price}}">
+				</div>
+                <div class="form-group">
+                    <label>Image :</label>
+                    <input type="text" class="form-control" name="txtImage" value="{{product.image}}">
+                </div>
+				<div class="form-group">
+					<button class="btn btn-success" type="submit" value="Insert">Update</button>
+					<button class="btn btn-danger" type="reset">Reset</button>
+				</div>
+			</form>
               </center>
 </body>
 </html>

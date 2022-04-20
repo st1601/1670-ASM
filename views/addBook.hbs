@@ -76,56 +76,44 @@
     </div>
   </header>
     <h1>NewBook</h1>
-    <form action="/addBook" method="post"
-                                    style="margin-top: 3%; margin-left: 37%;">
-                                    <div class="mb-3" style="font-size: 20px; font-weight:bold">
-                                        Name: <input type="text" name="txtName" value="" class="form-control"
-                                            style="margin-left: 50px;">
-                                    </div>
-                                    <br>
-                                    <div class="mb-3" style="font-size: 20px; font-weight:bold">
-                                        Picture:<input type="text" name="txtPicture" value="" class="form-control"
-                                            style="margin-left: 43px;">
-                                    </div>
-                                    <br>
-                                    <div class="mb-3" style="font-size: 20px; font-weight:bold">
-                                        Price:<input type="text" name="txtPrice" value="" class="form-control"
-                                            style="margin-left: 60px;">
-                                    </div>
-                                    <br>
+    <form method="post" action="addBook">
+				<div class="form-group">
+					<label>Book Name :</label>
+					<input class="form-control" type="text" name="txtName" placeholder="Enter product name">
+				</div>
+				<div class="form-group">
+					<label >Category Name :</label>
+					<select class="form-control" name="txtCategory" id="" >
+                        {{#each categories}}
+                        <option value="{{_id}}">{{name}}</option>
+                        {{/each}}
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Price :</label>
+					<input class="form-control" type="text" name="txtPrice" placeholder="Enter price" value="0">
+				</div>
+				<div class="form-group">
+					<label>Quantity:</label>
+					<input class="form-control" type="text" name="txtQuantity" placeholder="Enter quantity" value="0">
+				</div>
 
-                                    <div class="mb-3" style="font-size: 20px; font-weight:bold">
-                                        Category:<select name="txtCategory" style=" margin-left: 25px">
-                                            {{#each categories}}
-                                            <option value="{{name}}">{{name}}</option>
-                                            {{/each}}
-                                        </select>
-                                    </div>
-
-                                    <br>
-                                    <div class="mb-3" style="font-size: 20px; font-weight:bold">
-                                        Hot book:<select name="txthot" style=" margin-left: 25px">
-                                            <option value="true">true</option>
-                                            <option value="fail">fail</option>
-                                        </select>
-                                        <input style="width: 40%;" type="hidden" name="hot" id="txtDescription"
-                                            value="{{hot}}">
-                                    </div>
-                                    <br>
-                                    <div class="mb-3" style="font-size: 20px; font-weight:bold">
+                <div class="form-group">
+                    <label>Image:</label>
+                    <input type="text" class="form-control" name="txtImage" placeholder="Image link">
+                </div>
+                <div class="mb-3" style="font-size: 20px; font-weight:bold">
                                         Author:<input type="text" name="txtAuthor" value="" class="form-control"
                                             style="margin-left: 42px;">
                                     </div>
                                     <br>
                                     <div class="mb-3" style="font-size: 20px; font-weight:bold">
-                                        Publisher:<input type="text" name="txtDescription" value=""
+                                        Publisher:<input type="text" name="txtPublisher" value=""
                                             class="form-control" style="margin-left: 5px;">
                                     </div>
-                                    <br><br>
-                                    <div class="mb-3" style="font-size: 20px; font-weight:bold">
-                                        <input type="submit" value="add" class="form-control"
-                                            style="margin-left: 160px;">
-                                    </div>
-                                </form>
+				<div class="form-group">
+					<button class="btn btn-success" type="submit" value="Add Product">Add Book</button>
+				</div>
+			</form>
 </body>
 </html>
