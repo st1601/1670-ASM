@@ -179,7 +179,8 @@ app.get('/manageBook', async (_req, res) => {
     // const products = await getAllDocumentsFromCollection(collectionName);
     // await changeIdToCategoryName(products, dbo);
 
-    res.render('manageBook', { products: Products })
+    res.render('manageBook', )
+    // { products: Products }
 })
 
 // app.get('/addBook', async (req, res) => {
@@ -195,10 +196,10 @@ app.post('/addCategory', async (req, res) => {
 
     const newP = { name: name, description: description }
 
-    await insertObjectToCollection(collectionName, newP);
+    // await insertObjectToCollection(collectionName, newP);
     const notify = "Add category successful"
 
-    res.render('addCategory', { notify: notify })
+    res.render('manageCategory', { notify: notify })
 })
 app.get('/addCategory', (req, res) => {
     res.render('addCategory')
@@ -219,6 +220,13 @@ app.get('/deleteCategory', async (req, res) => {
 
 })
 app.get('/addBook', async (req, res) => {
+
+    // const categories = await getAllDocumentsFromCollection('Category');
+    // console.log(categories)
+    res.render('addBook',)
+    // {categories: categories}
+})
+app.post('/addBook', async (req, res) => {
     const name = req.body.txtName
     const price = req.body.txtPrice
     const picture = req.body.txtPicture
@@ -235,7 +243,7 @@ app.get('/addBook', async (req, res) => {
     // await insertObjectToCollection(collectionName, newP);
     const notify = "Add book successful"
 
-    res.render('addBook', { notify: notify })
+    res.render('manageBook', { notify: notify })
 })
 app.get('/updateBook', async (req, res) => {
     const id = req.query.id
@@ -273,11 +281,12 @@ app.post('/updateBook', async (req, res) => {
 
     res.redirect('manageBook')
 })
-app.get('manageCategory', async (_req, res) => {
+app.get('/manageCategory', async (_req, res) => {
     const collectionName = 'Category'
 
-    const category = await getAllDocumentsFromCollection(collectionName);
-    res.render('manageCategory', { category: category })
+    // const category = await getAllDocumentsFromCollection(collectionName);
+    res.render('manageCategory', )
+    // { category: category }
 })
 
 
