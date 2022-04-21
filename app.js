@@ -174,7 +174,7 @@ app.get('/deleteBook', async (req, res) => {
 })
 app.get('/manageBook', async (_req, res) => {
 
-    const collectionName = 'Books'
+    const collectionName = 'Book'
     const dbo = await getDatabase();
     const books = await getAllDocumentsFromCollection(collectionName);
     // await changeIdToCategoryName(books, dbo);
