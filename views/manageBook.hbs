@@ -89,22 +89,22 @@
             <th>Quantity</th>
             <th>Image</th>
             <th>Category</th>
+            <th>Author</th>
+            <th>Publisher</th>
             <th>Delete</th>
             <th>Edit</th>
-            <th>Detail</th>
-
-
         </tr>
     </thead>
     <tbody>
-        {{#each products}}
+        {{#each books}}
         <tr>
             <td>{{name}}</td>
             <td>{{price}}</td>
             <td>{{quantity}}</td>
             <td><img src="{{image}}" alt="" width="100" height="100"></td>
             <td>{{category.name}}</td>
-
+            <td>{{author}}</td>
+            <td>{{publisher}}</td>
             <td><a href="delete?id={{_id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
             <td><a href="edit?id={{_id}}">Edit</a></td>
         </tr>

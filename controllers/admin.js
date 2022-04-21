@@ -132,46 +132,32 @@ const { getDatabase, deleteProduct, getAllDocumentsFromCollection,
 //     const category = await getAllDocumentsFromCollection(collectionName);
 //     res.render('manageCategory', { category: category })
 // })
-router.get('/addBook', async (req, res) => {
+// router.get('/addBook', (req, res) => {
+//     res.render('manageBook')
+// })
+// router.post('/addBook', async (req, res) => {
+//     const name = req.body.txtName
+//     const price = req.body.txtPrice
+//     const picture = req.body.txtPicture
+//     const category = req.body.txtCategory
+//     const quantity = req.body.txtQuantity
+//     const author = req.body.txtAuthor
+//     const published = req.body.txtPublished
 
-    // const category = await getAllDocumentsFromCollection('Category');
-    // console.log(category)
-    res.render('addBook')
-    // 
-})
-router.post('/addBook', async (req, res) => {
-    const name = req.body.txtName
-    const price = req.body.txtPrice
-    const picture = req.body.txtPicture
-    const category = req.body.txtCategory
-    const quantity = req.body.txtQuantity
-    const author = req.body.txtAuthor
-    const published = req.body.txtPublished
-    // const collectionName = 'Book'
-
-    const objectToInsert = {
-        'name': name, 
-        'price': price, 
-        'picture': picture, 
-        'author': author, 
-        'published': published, 
-        'category': category, 
-        'quantity': quantity
-    }
-
-    insertObject(BOOK_TABLE_NAME, objectToInsert);
-    // const notify = "Add book successful"
-
-    res.render('manageBook')
-})
-// router.get('/manageBook', async (req, res) => {
-//     const collectionName = 'Book'
-//     const dbo = await getDatabase();
-//     const books = await getAllDocumentsFromCollection(collectionName);
-//     // await changeIdToCategoryName(books, dbo);
-
-//     res.render('manageBook', { books: books })
-//     // 
+//     const objectToInsert = {
+//         'name': name, 
+//         'price': price, 
+//         'picture': picture, 
+//         'author': author, 
+//         'published': published, 
+//         'category': category, 
+//         'quantity': quantity
+//     }
+//     insertObject(BOOK_TABLE_NAME, objectToInsert);
+//     res.render('manageBook')
+// })
+// router.get('/manageBook', (req, res) => {
+//     res.render('manageBook')
 // })
 router.get('/login',(req,res)=>{
     res.render('login')
