@@ -35,7 +35,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category">Book Category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="category">All Book</a></li>
                   <li class="nav-item"><a class="nav-link" href="single-product">Book Details</a></li>
                   <li class="nav-item"><a class="nav-link" href="checkout">Product Checkout</a></li>
                 </ul>
@@ -192,38 +192,7 @@
       </div>
     </section>
     <!-- ================ offer section end ================= --> 
-
-    <!-- ================ Best Selling item  carousel ================= --> 
-    <section class="section-margin calc-60px">
-      <div class="container">
-        <div class="section-intro pb-60px">
-          <p>All Book in the shop</p>
-          <h2>All <span class="section-intro__style">Book</span></h2>
-        </div>
-        <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-          {{#each books}}
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="{{img}}"  alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-                <p>{{category}}</p>
-                <h4 class="card-product__title"><a href="single-product.html">{{name}}</a></h4>
-                <p class="card-product__price">{{price}}</p>
-              </div>
-          </div>
-            {{/each}}
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ================ Best Selling item  carousel end ================= --> 
-
   
-
     <!-- ================ Subscribe section start ================= --> 
     <section class="subscribe-position">
       <div class="container">

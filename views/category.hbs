@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>FPT Book Shop - Category</title>
+  <title>FPT Book Shop - All Book</title>
 	<link rel="icon" href="img/FPT.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
   <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
   <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -71,11 +73,11 @@
 		<div class="container h-100">
 			<div class="blog-banner">
 				<div class="text-center">
-					<h1>Shop Category</h1>
+					<h1>All Book</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Shop Category</li>
+              <li class="breadcrumb-item"><a href="#">All Book</a></li>
+              <li class="breadcrumb-item active" aria-current="page">In The Shop</li>
             </ol>
           </nav>
 				</div>
@@ -86,100 +88,50 @@
 
 
 	<!-- ================ category section start ================= -->		  
-  <section class="section-margin--small mb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-3 col-lg-4 col-md-5">
-          <div class="sidebar-categories">
-            <div class="head">Browse Categories</div>
-            <ul class="main-categories">
-              <li class="common-filter">
-                <form action="#">
-                  <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="history" name="publisher"><label for="history">History<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="horror-thriller" name="publisher"><label for="horror-thriller">Horror - Thriller<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="love stories" name="publisher"><label for="love stories">Love Stories<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="science fiction" name="publisher"><label for="science fiction">Science Fiction<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="biography" name="publisher"><label for="biography">Biography<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="comic" name="publisher"><label for="comic">Comic<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="cooking" name="publisher"><label for="cooking">Cooking<span> (3600)</span></label></li>
-                  </ul>
-                </form>
-              </li>
-            </ul>
-          </div>
-          <div class="sidebar-filter">
-            <div class="top-filter-head">Product Filters</div>
-            <div class="common-filter">
-              <div class="head">Publisher</div>
-              <form action="#">
-                <ul>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="penguinrandomhouse" name="publisher"><label for="apple">Penguin Random House<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="hachettelivre" name="publisher"><label for="asus">Hachette Livre<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="publisher"><label for="gionee">Gionee<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="schuster" name="publisher"><label for="schuster">Schuster<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="harpercollins" name="publisher"><label for="harpercollins">HarperCollins<span>(19)</span></label></li>
+   <section class="section-margin calc-60px">
+      <div class="container">
+        <div class="section-intro pb-60px">
+          <p>Popular Book in the shop</p>
+          <h2>All <span class="section-intro__style">Book</span></h2>
+          <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <form action="/searchThanh" method="post">
+            <input class="search_input" type="text" name="txtSearchThanh" placeholder="Search name or price">
+            <input type="submit" value="Search">
+            </form>
+        </div>
+      </div>
+        </div>
+         {{!-- <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input class="search_input" type="text" name="" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
+      </div> --}}
+        <div class="container h-100">
+      </div>
+        <div class="row">
+          {{#each books}}
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="card text-center card-product">
+              <div class="card-product__img">
+                 <img class="img-fluid" src="{{img}}"  alt="">
+                 <ul class="card-product__imgOverlay">
+                  <li><button><i class="ti-shopping-cart"></i></button></li>
                 </ul>
-              </form>
             </div>
-            <div class="common-filter">
-              <div class="price-range-area">
-                <div class="value-wrapper d-flex">
-                </div>
-              </div>
+            <div class="card-body">
+                <p>{{category}}</p>
+                <h4 class="card-product__title"><a href="single-product.html">{{name}}</a></h4>
+                <p class="card-product__price">{{price}}</p>
             </div>
           </div>
+          </div>
+            {{/each}}
         </div>
-        <div class="col-xl-9 col-lg-8 col-md-7">
-          <!-- Start Filter Bar -->
-          <div class="filter-bar d-flex flex-wrap align-items-center">
-            <div class="sorting">
-              <select>
-                <option value="1">Default sorting</option>
-                <option value="1">Default sorting</option>
-                <option value="1">Default sorting</option>
-              </select>
-            </div>
-            <div class="sorting mr-auto">
-              <select>
-                <option value="1">Show 12</option>
-                <option value="1">Show 12</option>
-                <option value="1">Show 12</option>
-              </select>
-            </div>
-            <div class="search-container">
-              <form action="/action_page.php">
-               <input type="text" placeholder="Search name or price" name="search">
-               <button type="submit"><i class="fa fa-search"></i></button>
-               </form>
-            </div>
         </div>
-          </div>
-          <!-- End Filter Bar -->
-          <!-- Start Best Seller -->
-          <section class="lattest-product-area pb-40 category-list">
-            <div class="row">
-              {{#each books}}
-               <div class="col-md-6 col-lg-4 col-xl-3">
-                 <div class="card text-center card-product">
-                   <div class="card-product__img">
-                    <img class="card-img" src="{{img}}" width="200" height="400" alt="">
-                    <ul class="card-product__imgOverlay">
-                       <li><button><i class="ti-shopping-cart"></i></button></li>
-                    </ul>
-                 </div>
-                 <div class="card-body">
-                   <p>{{category}}</p>
-                   <h4 class="card-product__title"><a href="single-product">{{name}}</a></h4>
-                   <p class="card-product__price">{{price}}</p>
-              </div>
-            </div>
-          </div>
-          {{/each}}
-                </div>
-              </div>
-            </div>
-          </section>
+      </div>
+    </section>
           <!-- End Best Seller -->
         </div>
       </div>

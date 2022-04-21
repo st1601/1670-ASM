@@ -5,7 +5,7 @@ const Feedback = require('./controllers/Feedback')
 const ReplyFeedback = require('./controllers/ReplyFeedback')
 const session = require('express-session')
 const mongoose = require('mongoose');
-const {insertObject,checkUserRole,USER_TABLE_NAME} = require('./databaseHandler')
+const {insertObject,checkUserRole,USER_TABLE_NAME,getAllObjects} = require('./databaseHandler')
 app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
 app.use(express.static('../1670-ASM/public'));
 
@@ -62,6 +62,16 @@ app.get('/home',(req,res)=>{
 
 app.get('/login', (req,res)=>{
     res.render('login')
+})
+
+app.post('/searchThanh', function (req,res){
+    var name = req.query.txtSearchThanh;
+    var data = Book.filter(function(item){
+        return item.name === parseInt(name)
+    });
+    res.render('category',{
+        posts: data
+    });
 })
 
 

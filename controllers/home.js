@@ -12,5 +12,10 @@ router.get('/', async (req,res)=>{
     const allBooks = await getAllObjects("Book");
     res.render('index',{userInfo:req.session.User, books: allBooks})
 })
+router.get('/category', async (req,res)=>{
+    const allBooks = await getAllObjects("Book");
+    res.render('category',{userInfo:req.session.User, books: allBooks})
+})
+
 
 module.exports = router;
