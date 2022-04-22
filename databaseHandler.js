@@ -38,6 +38,14 @@ async function  getAllObjects(collectionName){
     const dbo = await getDB();
     return await dbo.collection(collectionName).find().toArray();
 }
+
+async function  getOneObject(collectionName, id){
+    const dbo = await getDB();
+    return await dbo.collection(collectionName).findOne({_id : ObjectId(id)});
+}
+
+
+
 async function getCurrentUserSession(req,res){
     const curUser = req.session.User;
     if (!curUser){
@@ -58,4 +66,4 @@ async function getAllDocumentsFromCollection(collectionName) {
 }
 
 const BOOK_TABLE_NAME = "Books"
-module.exports = {getAllDocumentsFromCollection,insertObject,checkUserRole,getDatabase,getAllObjects,insertObjectToCollection,getCurrentUserSession,USER_TABLE_NAME,BOOK_TABLE_NAME}
+module.exports = {getAllDocumentsFromCollection,insertObject,checkUserRole,getDatabase,getAllObjects,insertObjectToCollection,getCurrentUserSession,USER_TABLE_NAME,BOOK_TABLE_NAME, getOneObject}

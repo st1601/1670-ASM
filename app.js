@@ -5,7 +5,7 @@ const Feedback = require('./controllers/Feedback')
 const ReplyFeedback = require('./controllers/ReplyFeedback')
 const session = require('express-session')
 const mongoose = require('mongoose');
-const {insertObject,checkUserRole,USER_TABLE_NAME,getAllObjects} = require('./databaseHandler')
+const {insertObject,checkUserRole,USER_TABLE_NAME,getAllObjects, getOneObject} = require('./databaseHandler')
 app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
 app.use(express.static('../1670-ASM/public'));
 
@@ -64,15 +64,24 @@ app.get('/login', (req,res)=>{
     res.render('login')
 })
 
-app.post('/searchThanh', function (req,res){
-    var name = req.query.txtSearchThanh;
-    var data = Book.filter(function(item){
-        return item.name === parseInt(name)
-    });
-    res.render('category',{
-        posts: data
-    });
+app.post('/searchNameBook', async (req,res)=>{
+    var name = req.body.txtSearchNameBook;
+    const Books = await getAllObjects("Book");
+    var data = Books.filter(book =>{
+         return book.name.includes(name) 
+    })
+    res.render('category',{userInfo:req.session.User, books: data})
 })
+
+app.post('/searchPriceBook', async (req,res)=>{
+    var price = req.body.txtSearchPriceBook;
+    const Books = await getAllObjects("Book");
+    var data = Books.filter(book =>{
+         return book.price.toString().includes(price) 
+    })
+    res.render('category',{userInfo:req.session.User, books: data})
+})
+
 
 
 app.get('/category', (req,res)=>{
@@ -118,8 +127,11 @@ app.post('/register',(req,res)=>{
     res.render('/')
 })
 
-app.get('/single-product', (req,res)=>{
-    res.render('single-product')
+app.get('/single-product', async (req,res)=>{
+    var id = req.query.id
+    const data = await getOneObject("Book", id);
+    console.log(data)
+    res.render('single-product', {book:data})
 })
 
 app.get('/tracking-order', (req,res)=>{
@@ -209,20 +221,12 @@ app.post('/addBook', async (req, res) => {
     const author = req.body.txtAuthor
     const published = req.body.txtPublished
     const collectionName = 'Books'
-
     const newB = {
-        'name': name, 
-        'price': price, 
-        'picture': picture, 
-        'author': author, 
-        'published': published, 
-        'category': category, 
-        'quantity': quantity
+        'name': name, 'price': price, 
+        'picture': picture, 'author': author, 
+        'published': published, 'category': category, 'quantity': quantity
     }
-
     await insertObjectToCollection(collectionName, newB);
-    // const notify = "Add book successful"
-
     res.render('manageBook')
 })
 app.post('/addCategory', async (req, res) => {
