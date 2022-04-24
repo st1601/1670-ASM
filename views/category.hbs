@@ -106,8 +106,8 @@
             </form>
           </div>
           <div class="searchbar" style="margin-left: 100px;"> 
-            <form action="/searchBook" method="post">
-              <input class="search_input" type="text" name="txtSearchNameBook" placeholder="Search price">
+            <form action="/searchPriceBook" method="post">
+              <input class="search_input" type="text" name="txtSearchPriceBook" placeholder="Search price">
               <input type="submit" value="Search">
             </form>
           </div>
@@ -129,7 +129,7 @@
             <div class="card-product__img">
               <img class="img-fluid" src="{{img}}" alt="">
               <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-shopping-cart"></i></button></li>
+                  <li><a href="/cart/add-to-cart/{{_id}}"><button><i class="ti-shopping-cart"></i></button></a>
               </ul>
             </div>
             <div class="card-body">

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>FPT Book Shop</title>
-	<link rel="icon" href="img/FPT.png" type="image/png">
+  <link rel="icon" href="img/FPT.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
   <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
   <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <!--================ Start Header Menu Area =================-->
-	<header class="header_area">
+  <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -35,11 +37,12 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category">All Book</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout">Checkout</a></li>
+                  <li class="nav-item"><a class="nav-link" href="category">Book Category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="single-product">Book Details</a></li>
+                  <li class="nav-item"><a class="nav-link" href="checkout">Product Checkout</a></li>
                 </ul>
-							</li>
-							<li class="nav-item submenu dropdown">
+              </li>
+              <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Pages</a>
                 <ul class="dropdown-menu">
@@ -50,13 +53,19 @@
                 </ul>
               </li>
               <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
-              
-              
+
+
             </ul>
 
             <ul class="nav-shop">
               <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
+              {{# if totolItem}}
+              <li class="nav-item"><a href="/cart"><button><i class="ti-shopping-cart"></i><span
+                      class="nav-shop__circle">{{totolItem}}</span></button> </a></li>
+              {{else}}
+              <li class="nav-item"><a href="#"><button><i class="ti-shopping-cart"></i><span
+                      class="nav-shop__circle">{{totolItem}}</span></button> </a></li>
+              {{/if}}
               <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
             </ul>
           </div>
@@ -64,10 +73,10 @@
       </nav>
     </div>
   </header>
-	<!--================ End Header Menu Area =================-->
+  <!--================ End Header Menu Area =================-->
 
   <main class="site-main">
-    
+
     <!--================ Hero banner start =================-->
     <section class="hero-banner">
       <div class="container">
@@ -80,8 +89,9 @@
           <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
             <div class="hero-banner__content">
               <h4>Fun</h4>
-              <h1>Browse  Our Premium Book</h1>
-              <p>Let us tenderly and kindly cherish, therefore, the means of knowledge. Let us dare to read, think, speak, and write.</p>
+              <h1>Browse Our Premium Book</h1>
+              <p>Let us tenderly and kindly cherish, therefore, the means of knowledge. Let us dare to read, think,
+                speak, and write.</p>
               <a class="button button-hero" href="#">Browse Now</a>
             </div>
           </div>
@@ -94,7 +104,7 @@
     <section class="section-margin mt-0">
       <div class="owl-carousel owl-theme hero-carousel">
         <div class="hero-carousel__slide">
-          <img src="img/home/hero-slide1.png"  alt="" class="img-fluid">
+          <img src="img/home/hero-slide1.png" alt="" class="img-fluid">
           <a href="#" class="hero-carousel__slideOverlay">
             <h3>My Book Cover</h3>
             <p>Best Book of the Year</p>
@@ -118,7 +128,7 @@
     </section>
     <!--================ Hero Carousel end =================-->
 
-    <!-- ================ trending product section start ================= -->  
+    <!-- ================ trending product section start ================= -->
     <section class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
@@ -127,56 +137,59 @@
         </div>
         <div class="row">
           {{#each books}}
-             {{#if bestseller}}
+          {{#if bestseller}}
           <div class="col-md-6 col-lg-4 col-xl-3">
             <div class="card text-center card-product">
               <div class="card-product__img">
                 <img class="card-img" src="{{img}}" width="200" height="400" alt="">
                 <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
+                  <li><a href="/cart/add-to-cart/{{_id}}"><button><i class="ti-shopping-cart"></i></button></a>
+                  </li>
                 </ul>
               </div>
               <div class="card-body">
                 <p>{{category}}</p>
                 <h4 class="card-product__title"><a href="single-product?id={{_id}}">{{name}}</a></h4>
-                <p class="card-product__price">{{price}}</p> 
+                <p class="card-product__price">{{price}}</p>
               </div>
             </div>
           </div>
-              {{/if}}
+          {{/if}}
           {{/each}}
         </div>
         <div class="container">
           <div class="section-intro pb-60px">
             <h2>New <span class="section-intro__style">Book</span></h2>
-        </div>
-        <div class="row">
-          {{#each books}}
-             {{#if newbook}}
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="{{img}}" width="200" height="400" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>{{category}}</p>
-                <h4 class="card-product__title"><a href="/single-product/{{id}}">{{name}}</a></h4>
-                <p class="card-product__price">{{price}}</p>
+          </div>
+          <div class="row">
+            {{#each books}}
+            {{#if newbook}}
+            <div class="col-md-6 col-lg-4 col-xl-3">
+              <div class="card text-center card-product">
+                <div class="card-product__img">
+                  <img class="card-img" src="{{img}}" width="200" height="400" alt="">
+                  <ul class="card-product__imgOverlay">
+                    <li><a href="/cart/add-to-cart/{{this._id}}"><button><i class="ti-shopping-cart"></i></button></a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <p>{{category}}</p>
+                  <h4 class="card-product__title"><a href="single-product">{{name}}</a></h4>
+                  <p class="card-product__price">{{price}}</p>
+                </div>
               </div>
             </div>
+            {{/if}}
+            {{/each}}
           </div>
-              {{/if}}
-          {{/each}}
-      </div>
     </section>
-    <!-- ================ trending product section end ================= -->  
-  
+    <!-- ================ trending product section end ================= -->
 
-    <!-- ================ offer section start ================= --> 
-    <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+
+    <!-- ================ offer section start ================= -->
+    <section class="offer" id="parallax-1" data-anchor-target="#parallax-1"
+      data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
       <div class="container">
         <div class="row">
           <div class="col-xl-5">
@@ -190,18 +203,52 @@
         </div>
       </div>
     </section>
-    <!-- ================ offer section end ================= --> 
-  
-    <!-- ================ Subscribe section start ================= --> 
-    {{!-- <section class="subscribe-position">
+    <!-- ================ offer section end ================= -->
+
+    <!-- ================ Best Selling item  carousel ================= -->
+    <section class="section-margin calc-60px">
+      <div class="container">
+        <div class="section-intro pb-60px">
+          <p>All Book in the shop</p>
+          <h2>All <span class="section-intro__style">Book</span></h2>
+        </div>
+        <div class="owl-carousel owl-theme" id="bestSellerCarousel">
+          {{#each books}}
+          <div class="card text-center card-product">
+            <div class="card-product__img">
+              <img class="img-fluid" src="{{img}}" alt="">
+              <ul class="card-product__imgOverlay">
+                <li><a href="/cart/add-to-cart/{{this._id}}"><button><i class="ti-shopping-cart"></i></button></a></li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p>{{category}}</p>
+              <h4 class="card-product__title"><a href="single-product.html">{{name}}</a></h4>
+              <p class="card-product__price">{{price}}</p>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      </div>
+    </section>
+    <!-- ================ Best Selling item  carousel end ================= -->
+
+
+
+    <!-- ================ Subscribe section start ================= -->
+    <section class="subscribe-position">
       <div class="container">
         <div class="subscribe text-center">
           <h3 class="subscribe__title">Get Update From Anywhere</h3>
           <p>Bearing Void gathering light light his eavening unto dont afraid</p>
           <div id="mc_embed_signup">
-            <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
+            <form target="_blank"
+              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+              method="get" class="subscribe-form form-inline mt-5 pt-1">
               <div class="form-group ml-sm-auto">
-                <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" >
+                <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email"
+                  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '">
                 <div class="info"></div>
               </div>
               <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
@@ -211,92 +258,95 @@
 
             </form>
           </div>
-          
+
         </div>
       </div>
-    </section> --}}
-    <!-- ================ Subscribe section end ================= --> 
+    </section>
+    <!-- ================ Subscribe section end ================= -->
 
-    
+
 
   </main>
 
 
-  <!--================ Start footer Area  =================-->	
-	<footer class="footer">
-		<div class="footer-area">
-			<div class="container">
-				<div class="row section_gap">
-					<div class="col-lg-3 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title large_title">About Us</h4>
-							<p>
-								FPT Shop accepts online orders and delivers locally. DO NOT support ordering and receiving goods directly at the office as well as all FPT Shop systems nationwide.
-							</p>
-							<p>
-								Nature and books belong to the eyes that see them. 
-							</p>
-						</div>
-					</div>
-					<div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title">Quick Links</h4>
-							<ul class="list">
-								<li><a href="#">Home</a></li>
-								<li><a href="#">Shop</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">Product</a></li>
-								<li><a href="#">Brand</a></li>
-								<li><a href="#">Contact</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title">Contact Us</h4>
-							<div class="ml-40">
-								<p class="sm-head">
-									<span class="fa fa-location-arrow"></span>
-									Head Office
-								</p>
-								<p>123, Main Street, Your City</p>
-	
-								<p class="sm-head">
-									<span class="fa fa-phone"></span>
-									Phone Number
-								</p>
-								<p>
-									+123 456 7890 <br>
-									+123 456 7890
-								</p>
-	
-								<p class="sm-head">
-									<span class="fa fa-envelope"></span>
-									Email
-								</p>
-								<p>
-									free@infoexample.com <br>
-									www.infoexample.com
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+  <!--================ Start footer Area  =================-->
+  <footer class="footer">
+    <div class="footer-area">
+      <div class="container">
+        <div class="row section_gap">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="single-footer-widget tp_widgets">
+              <h4 class="footer_title large_title">About Us</h4>
+              <p>
+                FPT Shop accepts online orders and delivers locally. DO NOT support ordering and receiving goods
+                directly at the office as well as all FPT Shop systems nationwide.
+              </p>
+              <p>
+                Nature and books belong to the eyes that see them.
+              </p>
+            </div>
+          </div>
+          <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+            <div class="single-footer-widget tp_widgets">
+              <h4 class="footer_title">Quick Links</h4>
+              <ul class="list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Product</a></li>
+                <li><a href="#">Brand</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+            <div class="single-footer-widget tp_widgets">
+              <h4 class="footer_title">Contact Us</h4>
+              <div class="ml-40">
+                <p class="sm-head">
+                  <span class="fa fa-location-arrow"></span>
+                  Head Office
+                </p>
+                <p>123, Main Street, Your City</p>
 
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row d-flex">
-					<p class="col-lg-12 footer-text text-center">
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!--================ End footer Area  =================-->
+                <p class="sm-head">
+                  <span class="fa fa-phone"></span>
+                  Phone Number
+                </p>
+                <p>
+                  +123 456 7890 <br>
+                  +123 456 7890
+                </p>
+
+                <p class="sm-head">
+                  <span class="fa fa-envelope"></span>
+                  Email
+                </p>
+                <p>
+                  free@infoexample.com <br>
+                  www.infoexample.com
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row d-flex">
+          <p class="col-lg-12 footer-text text-center">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--================ End footer Area  =================-->
 
 
 
@@ -309,4 +359,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

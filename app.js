@@ -4,11 +4,15 @@ const async = require('hbs/lib/async')
 const Feedback = require('./controllers/Feedback')
 const ReplyFeedback = require('./controllers/ReplyFeedback')
 const session = require('express-session')
+const cookieParser = require('cookie-parser');
+
 const mongoose = require('mongoose');
 const {insertObject,checkUserRole,USER_TABLE_NAME,getAllObjects, getOneObject} = require('./databaseHandler')
-app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
+const cartRoutes = require('./controllers/cart')
 app.use(express.static('../1670-ASM/public'));
+const MongoStore = require('connect-mongo');
 
+var mongoDB = 'mongodb+srv://binson113:son160901@cluster0.q4jaj.mongodb.net/test'
 
 
 
@@ -44,8 +48,16 @@ app.use(express.urlencoded({ extended: true }))
 // app.use(bodyParser.urlencoded({
 //     extended: true
 // }))
-
-app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
+app.use(cookieParser());
+app.use(session({ 
+    secret: '124447yd@@$%%#', 
+    cookie: { maxAge: 60000 },
+    saveUninitialized: false, 
+    resave: false,
+    store: MongoStore.create({
+        mongoUrl: mongoDB
+    }),
+}))
 
 
 app.set('view engine', 'hbs')
@@ -56,11 +68,11 @@ app.use(express.static(__dirname + '/public'));
 const homeController = require('./controllers/home')
 app.use('/', homeController)
 
-app.get('/home',(req,res)=>{
-    res.render('home',{userInfo:req.session.User})
+app.get('/home', (req, res) => {
+    res.render('home', { userInfo: req.session.User })
 })
 
-app.get('/login', (req,res)=>{
+app.get('/login', (req, res) => {
     res.render('login')
 })
 
@@ -82,48 +94,43 @@ app.post('/searchPriceBook', async (req,res)=>{
     res.render('category',{userInfo:req.session.User, books: data})
 })
 
-
-
-app.get('/category', (req,res)=>{
+app.get('/category', (req, res) => {
     res.render('category')
 })
 
-app.get('/cart', (req,res)=>{
-    res.render('cart')
-})
 
-app.get('/checkout', (req,res)=>{
+app.get('/checkout', (req, res) => {
     res.render('checkout')
 })
 
-app.get('/confirmation', (req,res)=>{
+app.get('/confirmation', (req, res) => {
     res.render('confirmation')
 })
 
-app.get('/contact', (req,res)=>{
+app.get('/contact', (req, res) => {
     res.render('contact')
 })
 
-app.get('/feedback', (req,res)=>{
+app.get('/feedback', (req, res) => {
     res.render('feedback')
 })
 
-app.get('/register', (req,res)=>{
+app.get('/register', (req, res) => {
     res.render('register')
 })
-app.post('/register',(req,res)=>{
+app.post('/register', (req, res) => {
     const name = req.body.Name
     const username = req.body.Username
     const role = req.body.Role
     const password = req.body.Password
 
     const objectToInsert = {
-        name:name,
+        name: name,
         userName: username,
-        role:role,
+        role: role,
         password: password
     }
-    insertObject(USER_TABLE_NAME,objectToInsert)
+    insertObject(USER_TABLE_NAME, objectToInsert)
     res.render('/')
 })
 
@@ -134,7 +141,7 @@ app.get('/single-product', async (req,res)=>{
     res.render('single-product', {book:data})
 })
 
-app.get('/tracking-order', (req,res)=>{
+app.get('/tracking-order', (req, res) => {
     res.render('tracking-order')
 })
 
@@ -146,42 +153,42 @@ const { render } = require('express/lib/response')
 app.use('/customer', customerController)
 
 
-app.get('/feedback',(req,res)=>{
+app.get('/feedback', (req, res) => {
     res.render('feedback')
 })
-app.get('/replyFeedback',(req,res)=>{
+app.get('/replyFeedback', (req, res) => {
     res.render('replyFeedback')
 })
-app.post('/search',async (req,res)=>{
+app.post('/search', async (req, res) => {
     const searchText = req.body.txtSearch
-    const query = await Feedback.find({'nameBook':searchText})
-    res.render('viewFeedback',{feedbacks:query})
+    const query = await Feedback.find({ 'nameBook': searchText })
+    res.render('viewFeedback', { feedbacks: query })
 })
-app.get('/viewFeedback', async (req,res)=>{
+app.get('/viewFeedback', async (req, res) => {
     const feedbacks = await Feedback.find()
-    res.render('viewFeedback',{'feedbacks':feedbacks})
+    res.render('viewFeedback', { 'feedbacks': feedbacks })
 })
-app.get('/viewFeedbackAdmin', async (req,res)=>{
+app.get('/viewFeedbackAdmin', async (req, res) => {
     const feedbacks = await Feedback.find()
     const replyFeedbacks = await ReplyFeedback.find()
-    res.render('viewFeedbackAdmin',{'feedbacks':feedbacks, 'replyFeedbacks':replyFeedbacks})
+    res.render('viewFeedbackAdmin', { 'feedbacks': feedbacks, 'replyFeedbacks': replyFeedbacks })
 })
-app.post('/replyFeedback',async (req, res)=>{
+app.post('/replyFeedback', async (req, res) => {
     const replyFeedback = req.body.replyFeedback
-    const replyFeedbackEntity = new ReplyFeedback({'replyFeedback':replyFeedback})
+    const replyFeedbackEntity = new ReplyFeedback({ 'replyFeedback': replyFeedback })
     await replyFeedbackEntity.save()
     res.redirect('viewFeedbackAdmin')
 })
 
-app.post('/feedback', async (req, res)=>{
+app.post('/feedback', async (req, res) => {
     const firstname = req.body.firstname
     const lastname = req.body.lastname
     const mail = req.body.mail
     const nameBook = req.body.nameBook
     const country = req.body.country
     const feedback = req.body.feedback
-    const feedbackEntity = new Feedback({'firstname':firstname, 'lastname':lastname, 'mail':mail, 'nameBook':nameBook, 'country':country, 'feedback':feedback})
-    
+    const feedbackEntity = new Feedback({ 'firstname': firstname, 'lastname': lastname, 'mail': mail, 'nameBook': nameBook, 'country': country, 'feedback': feedback })
+
     await feedbackEntity.save()
 
     res.redirect('/')
@@ -220,94 +227,112 @@ app.post('/addBook', async (req, res) => {
     const quantity = req.body.txtQuantity
     const author = req.body.txtAuthor
     const published = req.body.txtPublished
-    const collectionName = 'Books'
+    const collectionName = 'Book'
+
     const newB = {
-        'name': name, 'price': price, 
-        'picture': picture, 'author': author, 
-        'published': published, 'category': category, 'quantity': quantity
+        'name': name,
+        'price': price,
+        'picture': picture,
+        'author': author,
+        'published': published,
+        'category': category,
+        'quantity': quantity
     }
+
     await insertObjectToCollection(collectionName, newB);
+    // const notify = "Add book successful"
+
     res.render('manageBook')
 })
-app.post('/addCategory', async (req, res) => {
-    const name = req.body.txtName
-    const description = req.body.txtDescription
-    const collectionName = 'Category'
+// app.post('/addCategory', async (req, res) => {
+//     const name = req.body.txtName
+//     const description = req.body.txtDescription
+//     const collectionName = 'Category'
 
-    const newP = { name: name, description: description }
+//     const newP = { name: name, description: description }
 
-   await insertObjectToCollection(collectionName, newP);
-    const notify = "Add category successful"
+//    await insertObjectToCollection(collectionName, newP);
+//     const notify = "Add category successful"
 
-    res.render('manageCategory', )
-    { notify: notify }
-    })
+//     res.render('manageCategory', )
+//     { notify: notify }
+//     })
 
-app.get('/addCategory', (req, res) => {
-    res.render('addCategory')
-})
+// app.get('/addCategory', (req, res) => {
+//     res.render('addCategory')
+// })
 
-app.get('/deleteBook', async (req, res) => {
-    const id = req.query.id
+// app.get('/deleteBook', async (req, res) => {
+//     const id = req.query.id
+//     const collectionName = 'Book'
+//     await deleteProduct(collectionName, id)
+//     res.redirect("manageBook")
+
+// })
+// app.get('/deleteCategory', async (req, res) => {
+//     const id = req.query.id
+//     const collectionName = 'Category'
+//     await deleteProduct(collectionName, id)
+
+//     res.redirect("manageCategory")
+
+// })
+
+// app.get('/updateBook', async (req, res) => {
+//     const id = req.query.id
+//     const collectionName = 'Book'
+
+//     const books = await getDocumentById(collectionName, id)
+
+//     const categories = await getAllDocumentsFromCollection('Category');
+//     console.log(categories)
+
+//     res.render('updateBook', {books:books, categories: categories})
+// })
+
+// app.post('/updateBook', async (req, res) => {
+//     const id = req.body.txtId
+//     const name = req.body.txtName
+//     const price = req.body.txtPrice
+//     const picture = req.body.txtImage
+//     const category = req.body.txtCategory
+//     const author = req.body.txtAuthor
+//     const description = req.body.txtDescription
+//     const collectionName = 'Book'
+
+//     const newvalues = {
+//         $set: {
+//             name: name, category: category, price: Number.parseFloat(price),
+//             description: description, imgURL: picture, author: author, category: category, hot: 'false'
+//         }
+
+//     }
+//     await updateCollection(id, collectionName, newvalues);
+
+
+//     const notify = "Update book successful"
+
+//     res.redirect('manageBook')
+// })
+// app.get('/manageCategory', async (_req, res) => {
+//     const collectionName = 'Category'
+
+//      const category = await getAllDocumentsFromCollection(collectionName);
+//     res.render('manageCategory', { category: category })
+
+// })
+
+app.get('/manageBook', async (req, res) => {
     const collectionName = 'Book'
-    await deleteProduct(collectionName, id)
-    res.redirect("manageBook")
+    const dbo = await getDatabase();
+    const books = await getAllDocumentsFromCollection(collectionName);
+    // await changeIdToCategoryName(books, dbo);
 
-})
-app.get('/deleteCategory', async (req, res) => {
-    const id = req.query.id
-    const collectionName = 'Category'
-    await deleteProduct(collectionName, id)
-
-    res.redirect("manageCategory")
-
+    res.render('manageBook', { books: books })
+    // 
 })
 
-app.get('/updateBook', async (req, res) => {
-    const id = req.query.id
-    const collectionName = 'Book'
-    
-    const books = await getDocumentById(collectionName, id)
-    
-    const categories = await getAllDocumentsFromCollection('Category');
-    console.log(categories)
-
-    res.render('updateBook', {books:books, categories: categories})
-})
-
-app.post('/updateBook', async (req, res) => {
-    const id = req.body.txtId
-    const name = req.body.txtName
-    const price = req.body.txtPrice
-    const picture = req.body.txtImage
-    const category = req.body.txtCategory
-    const author = req.body.txtAuthor
-    const published = req.body.txtPublished
-    const collectionName = 'Books'
-
-    const newvalues = {
-        $set: {
-            name: name, category: category, price: Number.parseFloat(price),
-            description: description, imgURL: picture, author: author, category: category
-        }
-
-    }
-    await updateCollection(id, collectionName, newvalues);
-
-    
-    const notify = "Update book successful"
-
-    res.redirect('manageBook')
-})
-app.get('/manageCategory', async (_req, res) => {
-    const collectionName = 'Category'
-
-     const category = await getAllDocumentsFromCollection(collectionName);
-    res.render('manageCategory', { category: category })
-
-})
-
-
+app.use('/', cartRoutes);
 
 
 const PORT = process.env.PORT || 5000
