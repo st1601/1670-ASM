@@ -176,12 +176,13 @@ app.get('/replyFeedback',async (req, res) => {
     res.render('replyFeedback', {'feedback': prod})
 })
 app.post('/replyFeedback', async (req, res) => {
-    const replyFeedback = req.body.replyFeedback
+    const id = req.body.id
+    const replyFeedbackAdmin = req.body.replyFeedback
     var prod = await Feedback.findById(id)
     prod.replyFeedbackAdmin = replyFeedbackAdmin
     
     prod.save((err)=>{
-        res.redirect('viewFeedbackAdmin')
+        res.redirect('/viewFeedbackAdmin')
     })
 })
 
