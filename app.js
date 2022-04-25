@@ -173,7 +173,7 @@ app.get('/viewFeedbackAdmin', async (req, res) => {
 app.get('/replyFeedback',async (req, res) => {
     const id = req.query.id
     const prod = await Feedback.findById(id)
-    res.render('replyFeedback', {'product': prod})
+    res.render('replyFeedback', {'feedback': prod})
 })
 app.post('/replyFeedback', async (req, res) => {
     const replyFeedback = req.body.replyFeedback
