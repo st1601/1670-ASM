@@ -156,9 +156,6 @@ app.use('/customer', customerController)
 app.get('/feedback', (req, res) => {
     res.render('feedback')
 })
-app.get('/replyFeedback', (req, res) => {
-    res.render('replyFeedback')
-})
 app.post('/search', async (req, res) => {
     const searchText = req.body.txtSearch
     const query = await Feedback.find({ 'nameBook': searchText })
@@ -173,11 +170,19 @@ app.get('/viewFeedbackAdmin', async (req, res) => {
     const replyFeedbacks = await ReplyFeedback.find()
     res.render('viewFeedbackAdmin', { 'feedbacks': feedbacks, 'replyFeedbacks': replyFeedbacks })
 })
+app.get('/replyFeedback', (req, res) => {
+    const id = req.query.id
+    const prod = await Feedback.findById(id)
+    res.render('replyFeedback', {'product': prod})
+})
 app.post('/replyFeedback', async (req, res) => {
     const replyFeedback = req.body.replyFeedback
-    const replyFeedbackEntity = new ReplyFeedback({ 'replyFeedback': replyFeedback })
-    await replyFeedbackEntity.save()
-    res.redirect('viewFeedbackAdmin')
+    var prod = await Feedback.findById(id)
+    prod.replyFeedbackAdmin = replyFeedbackAdmin
+    
+    prod.save((err)=>{
+        res.redirect('viewFeedbackAdmin')
+    })
 })
 
 app.post('/feedback', async (req, res) => {
@@ -187,7 +192,8 @@ app.post('/feedback', async (req, res) => {
     const nameBook = req.body.nameBook
     const country = req.body.country
     const feedback = req.body.feedback
-    const feedbackEntity = new Feedback({ 'firstname': firstname, 'lastname': lastname, 'mail': mail, 'nameBook': nameBook, 'country': country, 'feedback': feedback })
+    const replyFeedbackAdmin = req.body.replyFeedbackAdmin
+    const feedbackEntity = new Feedback({ 'firstname': firstname, 'lastname': lastname, 'mail': mail, 'nameBook': nameBook, 'country': country, 'feedback': feedback, 'replyFeedbackAdmin': replyFeedbackAdmin })
 
     await feedbackEntity.save()
 

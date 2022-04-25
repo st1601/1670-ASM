@@ -21,6 +21,7 @@
             <td>Name Book</td>
             <td>Country</td>
             <td>Feed Back</td>
+            <td>replyFeedbackAdmin</td>
             <td>Reply</td>
         </tr>
         {{#each feedbacks}} 
@@ -31,20 +32,11 @@
                     <td>{{nameBook}}</td>
                     <td>{{country}}</td>
                     <td>{{feedback}}</td>
-                    <td><a href="replyFeedback">Reply</a></td>
+                    <td>{{replyFeedbackAdmin}}</td>
+                    <td><a href="replyFeedback={{_id}}">Reply</a></td>
                     
             </tr>
         {{/each}}
-        <table id="adminReply" border="1">
-        <tr>
-            <td>Admin reply</td>
-        </tr>
-        {{#each replyFeedbacks}}
-        <tr>
-            <td>{{replyFeedback}}</td>
-        </tr>
-        {{/each}}
-    </table>
     </table>
         <a href="/">Back</a></li>
 </body>
