@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const async = require('hbs/lib/async')
 const Feedback = require('./controllers/Feedback')
-const ReplyFeedback = require('./controllers/ReplyFeedback')
 const session = require('express-session')
 const cookieParser = require('cookie-parser');
 
@@ -167,8 +166,22 @@ app.get('/viewFeedback', async (req, res) => {
 })
 app.get('/viewFeedbackAdmin', async (req, res) => {
     const feedbacks = await Feedback.find()
-    const replyFeedbacks = await ReplyFeedback.find()
-    res.render('viewFeedbackAdmin', { 'feedbacks': feedbacks, 'replyFeedbacks': replyFeedbacks })
+    res.render('viewFeedbackAdmin', { 'feedbacks': feedbacks})
+})
+app.get('/orderStatus',async (req, res) => {
+    const id = req.query.id
+    const prod = await Feedback.findById(id)
+    res.render('orderStatus', {'feedback': prod})
+})
+app.post('/orderStatus', async (req, res) => {
+    const id = req.body.id
+    const orderStatus = req.body.orderStatus
+    var prod = await Feedback.findById(id)
+    prod.orderStatus = orderStatus
+    
+    prod.save((err)=>{
+        res.redirect('/viewFeedbackAdmin')
+    })
 })
 app.get('/replyFeedback',async (req, res) => {
     const id = req.query.id
@@ -194,7 +207,8 @@ app.post('/feedback', async (req, res) => {
     const country = req.body.country
     const feedback = req.body.feedback
     const replyFeedbackAdmin = req.body.replyFeedbackAdmin
-    const feedbackEntity = new Feedback({ 'firstname': firstname, 'lastname': lastname, 'mail': mail, 'nameBook': nameBook, 'country': country, 'feedback': feedback, 'replyFeedbackAdmin': replyFeedbackAdmin })
+    const orderStatus = req.body.orderStatus
+    const feedbackEntity = new Feedback({ 'firstname': firstname, 'lastname': lastname, 'mail': mail, 'nameBook': nameBook, 'country': country, 'feedback': feedback, 'replyFeedbackAdmin': replyFeedbackAdmin, 'orderStatus':orderStatus })
 
     await feedbackEntity.save()
 

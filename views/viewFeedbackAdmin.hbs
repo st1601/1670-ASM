@@ -23,6 +23,8 @@
             <td>Feed Back</td>
             <td>replyFeedbackAdmin</td>
             <td>Reply</td>
+            <td>Order Status</td>
+            <td>Update Order Status</td>
         </tr>
         {{#each feedbacks}} 
             <tr>
@@ -34,6 +36,8 @@
                     <td>{{feedback}}</td>
                     <td>{{replyFeedbackAdmin}}</td>
                     <td><a href="/replyFeedback?id={{_id}}">Reply</a></td>
+                    <td>{{orderStatus}}</td>
+                    <td><a href="/orderStatus?id={{_id}}">Update Order Status</a></td>
                     
             </tr>
         {{/each}}
