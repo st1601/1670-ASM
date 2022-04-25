@@ -170,7 +170,7 @@ app.get('/viewFeedbackAdmin', async (req, res) => {
     const replyFeedbacks = await ReplyFeedback.find()
     res.render('viewFeedbackAdmin', { 'feedbacks': feedbacks, 'replyFeedbacks': replyFeedbacks })
 })
-app.get('/replyFeedback', (req, res) => {
+app.get('/replyFeedback',async (req, res) => {
     const id = req.query.id
     const prod = await Feedback.findById(id)
     res.render('replyFeedback', {'product': prod})
