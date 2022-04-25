@@ -15,6 +15,7 @@ module.exports = function Cart(oldCart) {
     };
 
     this.increseByOne = function (id) {
+        
         this.items[id].qty++;
         this.items[id].price += this.items[id].item.price.slice(0, -1) * 1;
         this.totalQty++;

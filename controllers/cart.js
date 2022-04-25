@@ -60,7 +60,8 @@ router.get('/cart', function (req, res, next) {
     }
     const cart = new Cart(req.session.cart);
     console.log(cart)
-    return res.render('./cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
+    const totalItem = req.session.cart?.totalQty || 0;
+    return res.render('./cart', {products: cart.generateArray(), totalPrice: cart.totalPrice, totalItem: totalItem});
 });
 
 module.exports = router;

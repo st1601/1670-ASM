@@ -207,8 +207,8 @@
 		background: transparent;
 		box-shadow: none;
 		cursor: pointer;
-		position: absolute;
-		right: 0px;
+		// position: absolute;
+		// right: 0px;
 		font-size: 14px;
 		color: #cccccc;
 		@include transition;
@@ -216,12 +216,12 @@
 			color: $title-color;
 		}
 	}
-	.increase{
-		top: -4px;
-	}
-	.reduced{
-		bottom: -8px;
-	}
+	// .increase{
+	// 	top: -4px;
+	// }
+	// .reduced{
+	// 	bottom: -8px;
+	// }
 	
 }
 
