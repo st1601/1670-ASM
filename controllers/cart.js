@@ -45,13 +45,13 @@ router.get('/cart/increase/:id', function (req, res, next) {
     res.redirect('/cart');
 });
 
-router.get('/cart/remove/:id', function (req, res, next) {
-    const productId = req.params.id;
-    const cart = new Cart(req.session.cart ? req.session.cart : {});
-    cart.removeItem(productId);
-    req.session.cart = cart;
-    res.redirect('/cart');
-});
+// router.get('/cart/remove/:id', function (req, res, next) {
+//     const productId = req.params.id;
+//     const cart = new Cart(req.session.cart ? req.session.cart : {});
+//     cart.removeItem(productId);
+//     req.session.cart = cart;
+//     res.redirect('/cart');
+// });
 
 router.get('/cart', function (req, res, next) {
     console.log("Hiha")
