@@ -19,91 +19,7 @@
 </head>
 <body>
 	<!--================ Start Header Menu Area =================-->
-	<header class="header_area">
-    <div class="main_menu">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-        <a class="navbar-brand logo_h" href="index.hbs"><img src="img/FPT.png" width="130" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        
-    	</nav>
-		<h1>Register a new user!</h1>
-    <form method="post" action="/register">
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                        </div>
-                        <input name="txtName" class="form-control" placeholder="Full name" type="text">
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                        </div>
-                        <input name="txtEmail" class="form-control" placeholder="Email address" type="email"> <span style="color: red;">{{err}}</span>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                        </div>
-                        <input name="txtPassword" class="form-control" placeholder="Create password" type="password">
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                        </div>
-                        <input name="txtRePassword" class="form-control" placeholder="Repeat password" type="password">
-                    </div> <!-- form-group// -->
-					Role: 
-        				<select name="Role">
-            					<option value="admin">Admin</option>
-            					<option value="customer">Customer</option>
-        				</select>
-        <br>
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-                        </div>
-                        <input name="txtPhone" class="form-control" placeholder="Phone number" type="text">
-                    </div> <!-- form-group// -->
-                    {{!-- <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-                        </div>
-                        <select class="form-control">
-                            <option selected=""> Select job type</option>
-                            <option>Designer</option>
-                            <option>Manager</option>
-                            <option>Accaunting</option>
-                        </select>
-                    </div> <!-- form-group end.// --> --}}
-					
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fas fa-calendar-alt"></i></i> </span>
-                        </div>
-                        <input name="txtDate" placeholder="Date of Birth*" id="birthDate" class="form-control" type="date">
-                        <span style="color: red; font-weight: bold">(Date of Birth*)</span>
-                    </div> <!-- form-group// -->
-
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-                        </div>
-                        <input name="txtAddress" class="form-control" placeholder="Address" type="text">
-
-                    </div> <!-- form-group// -->
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
-                    </div> <!-- form-group// -->
-                    <p class="text-center">Have an account? <a href="/login">Log In</a> </p>
-                </form>
-    </div>
-	</header>
+	
 	<!--================ End Header Menu Area =================-->
 
 	<!-- ================ start banner area ================= -->	
@@ -111,8 +27,7 @@
 	<!-- ================ end banner area ================= -->
 
 	<!--================Login Box Area =================-->
-<<<<<<< HEAD
-	<section class="login_box_area section-margin">
+<section class="login_box_area section-margin">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
@@ -152,9 +67,6 @@
 			</div>
 		</div>
 	</section>
-=======
-	
->>>>>>> 335e453acfbdaa26412cf5f486d27008e35fc409
 	<!--================End Login Box Area =================-->
 
 

@@ -183,6 +183,15 @@ app.get('/viewFeedbackAdmin', async (req, res) => {
     const feedbacks = await Feedback.find()
     res.render('viewFeedbackAdmin', { 'feedbacks': feedbacks})
 })
+app.get('/delete', async(req,res)=>{
+    const id = req.query.id
+    await Feedback.deleteOne({'_id':id})
+    res.redirect('/viewStatus')
+})
+app.get('/viewStatus', async (req, res) => {
+    const feedbacks = await Feedback.find({'orderStatus':'Delivery'})
+    res.render('viewStatus', { 'feedbacks': feedbacks})
+})
 app.get('/orderStatus',async (req, res) => {
     const id = req.query.id
     const prod = await Feedback.findById(id)

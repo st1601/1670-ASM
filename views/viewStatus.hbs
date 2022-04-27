@@ -53,7 +53,6 @@
                   <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="register">Register</a></li>
                   <li class="nav-item"><a class="nav-link" href="viewFeedbackAdmin">View Feed Back</a></li>
-                  <li class="nav-item"><a class="nav-link" href="viewStatus">View Status</a></li>
                 </ul>
               </li>
 
@@ -69,7 +68,7 @@
     </div>
   </header>
  <center>
-    <h1>All Feed Back</h1>
+    <h1>All order</h1>
     <table border="2" width ="60%" id="hung">
         <tr>
             <td>First Name</td>
@@ -77,11 +76,9 @@
             <td>Mail</td>
             <td>Name Book</td>
             <td>Country</td>
-            <td>Feed Back</td>
-            <td>reply Feedback Admin</td>
-            <td>Reply</td>
             <td>Order Status</td>
             <td>Update Order Status</td>
+            <td></td>
         </tr>
         {{#each feedbacks}} 
             <tr>
@@ -90,12 +87,9 @@
                     <td>{{mail}}</td>
                     <td>{{nameBook}}</td>
                     <td>{{country}}</td>
-                    <td>{{feedback}}</td>
-                    <td>{{replyFeedbackAdmin}}</td>
-                    <td><a href="/replyFeedback?id={{_id}}">Reply</a></td>
                     <td>{{orderStatus}}</td>
                     <td><a href="/orderStatus?id={{_id}}">Update Order Status</a></td>
-                    
+                    <td><a href="/delete?id={{_id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
             </tr>
         {{/each}}
     </table>
