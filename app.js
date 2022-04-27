@@ -86,12 +86,16 @@ app.post('/login', async (req, res) => {
     
     if (admin) {
         await res.cookie('adminId', admin.email)
-
+        req.session["User"] = {
+        'role': admin
+        }
         res.redirect('home')
     }
     else if(user){
         await res.cookie('userId', user.email)
-
+        // req.session["User"] = {
+        //     'role': customer
+        //     }
         res.redirect('index')
     }
     else {
@@ -157,6 +161,7 @@ app.post('/register', async (req, res) => {
     const email = req.body.txtEmail
     const password = req.body.txtPassword
     const rePassword = req.body.txtRePassword
+    const role = req.body.Role
     const phone = req.body.txtPhone
     const address = req.body.txtAddress
     const date = req.body.txtDate.toString()
@@ -171,7 +176,7 @@ app.post('/register', async (req, res) => {
     }
 
     const newUser = {
-        fullName: fullName, email: email, password: password, phoneNumber: phone,
+        fullName: fullName, email: email, password: password, phoneNumber: phone, role: role,
         dateOfBirth: date, address: address
     }
 
