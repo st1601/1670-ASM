@@ -121,8 +121,8 @@
                                   <div class="product_count">
                                       <input type="text" name="qty" id="sst" maxlength="12" value={{qty}} title="Quantity:"
                                           class="input-text qty" disabled>
-                                        <a type="button" href="cart/increase/{{item._id}}"><button class="increase items-count" type="button" style="position: none;"><i class="lnr lnr-chevron-up"></i></button></a>
-                                       <a href="cart/reduce/{{item._id}}"><button class="reduced items-count" type="button" style="position: none;" ><i class="lnr lnr-chevron-down"></i></button></a>
+                                        <a type="button" href="cart/increase/{{item._id}}"><button class="increase items-count" type="button" style="top: 6px; right: 8px"><i class="lnr lnr-chevron-up"></i></button></a>
+                                       <a href="cart/reduce/{{item._id}}"><button class="reduced items-count" type="button" style="top: 6px; right: 8px"" ><i class="lnr lnr-chevron-down"></i></button></a>
                                   </div>
                               </td>
                               <td>
@@ -162,7 +162,7 @@
                                   <h5>${{totalPrice}}</h5>
                               </td>
                           </tr>
-                          <tr class="shipping_area">
+                          {{!-- <tr class="shipping_area">
                               <td class="d-none d-md-block">
 
                               </td>
@@ -195,7 +195,7 @@
                                       <a class="gray_btn" href="#">Update Details</a>
                                   </div>
                               </td>
-                          </tr>
+                          </tr> --}}
                           <tr class="out_button_area">
                               <td class="d-none-l">
 
