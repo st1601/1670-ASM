@@ -37,7 +37,7 @@ router.post('/addCategory', async (req, res) => {
     await insertObjectToCollection(collectionName, newP);
     const notify = "Add category successful"
 
-    res.render('addCategory', { notify: notify })
+    res.render('manageCatrgory', { notify: notify })
 })
 router.get('/addCategory', (req, res) => {
     res.render('addCategory')
