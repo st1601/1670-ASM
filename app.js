@@ -14,7 +14,6 @@ const MongoStore = require('connect-mongo');
 var mongoDB = 'mongodb+srv://binson113:son160901@cluster0.q4jaj.mongodb.net/test'
 
 
-
 const adminStoreOwner = require('./controllers/admin')
 app.set('view engine', 'hbs')
 app.use(express.static('public'))
@@ -65,7 +64,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'));
 
 const homeController = require('./controllers/home')
-app.use('/', homeController)
+app.use('/index', homeController)
 
 app.get('/home', (req, res) => {
     res.render('home', { userInfo: req.session.User })
@@ -78,11 +77,12 @@ app.post('/login', async (req, res) => {
     const email = req.body.txtEmail
 
     const password = req.body.password
-
+    console.log('run to here');
     const dbo = await getDatabase();
     const user = await dbo.collection('Customer').findOne({ $and: [{ email: email }, { password: password }] });
     const admin = await dbo.collection('Admin').findOne({ $and: [{ email: email }, { password: password }] });
-
+    console.log(user);
+    console.log(admin);
     
     if (admin) {
         await res.cookie('adminId', admin.email)
@@ -96,16 +96,14 @@ app.post('/login', async (req, res) => {
         // req.session["User"] = {
         //     'role': customer
         //     }
-        res.redirect('index')
+        res.redirect('/index')
     }
     else {
         res.render('login', { err: "User dose not exist or wrong password." })
         return
     }
 })
-app.get('/index', (req, res) => {
-    res.render('index')
-})
+
 app.get('/home', (req, res) => {
     res.render('home')
 })
@@ -114,6 +112,11 @@ app.get("/logout", (req, res) => {
     res.redirect("login");
   });
 
+app.get('/category', async (req,res)=>{
+    const allBooks = await getAllObjects("Book");
+    console.log(allBooks);
+    res.render('category',{userInfo:req.session.User, books: allBooks})
+})
 app.post('/searchNameBook', async (req,res)=>{
     var name = req.body.txtSearchNameBook;
     const Books = await getAllObjects("Book");
@@ -132,9 +135,9 @@ app.post('/searchPriceBook', async (req,res)=>{
     res.render('category',{userInfo:req.session.User, books: data})
 })
 
-app.get('/category', (req, res) => {
-    res.render('category')
-})
+// app.get('/category', (req, res) => {
+//     res.render('category')
+// })
 
 
 app.get('/checkout', (req, res) => {
@@ -189,8 +192,8 @@ app.post('/register', async (req, res) => {
 app.get('/single-product', async (req,res)=>{
     var id = req.query.id
     const data = await getOneObject("Book", id);
-    console.log(data)
-    res.render('single-product', {book:data})
+    totolItem = req.session.cart?.totalQty || 0;
+    res.render('single-product', {book:data,totolItem: totolItem})
 })
 
 app.get('/tracking-order', (req, res) => {
@@ -408,8 +411,9 @@ app.get('/manageBook', async (req, res) => {
 
 app.use('/', cartRoutes);
 
-app.get('/',(req,res)=>{
-    res.render('login',{userInfo:req.session.User})
+app.use('/',(req,res)=>{
+    
+        res.render('login',{userInfo:req.session.User})
     //res.render('home')
 })
 

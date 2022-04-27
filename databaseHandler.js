@@ -7,6 +7,7 @@ const DATABASE_NAME = "ASM-1670"
 async function getDB() {
     const client = await MongoClient.connect(URL);
     const dbo = client.db(DATABASE_NAME);
+    console.log('dbo' + dbo);
     return dbo;
 }
 async function insertObject(collectionName,objectToInsert){
@@ -27,7 +28,7 @@ async function getDocumentById(collectionName, id) {
 }
 async function  checkUserRole(nameI,passI){
     const dbo = await getDB();
-    // const user= await dbo.collection(USER_TABLE_NAME)({userName:nameI,password:passI});
+    const user= await dbo.collection(USER_TABLE_NAME)({userName:nameI,password:passI});
     if (user==null) {
         return "-1"
     }else{

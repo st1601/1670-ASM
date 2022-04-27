@@ -8,15 +8,11 @@ const { collection } = require('./Feedback')
 
 router.use(express.urlencoded({extended:true}))
 
-router.get('index', async (req,res)=>{
+router.get('/', async (req,res)=>{
     const allBooks = await getAllObjects("Book");
-    console.log(req.session);
+    console.log(allBooks);
     totolItem = req.session.cart?.totalQty || 0;
     res.render('index',{userInfo:req.session.User, books: allBooks, totolItem: totolItem})
-})
-router.get('/category', async (req,res)=>{
-    const allBooks = await getAllObjects("Book");
-    res.render('category',{userInfo:req.session.User, books: allBooks, })
 })
 
 

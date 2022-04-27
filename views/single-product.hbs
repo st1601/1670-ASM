@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>FPT Book Shop</title>
-	<link rel="icon" href="img/FPT.png" type="image/png">
+  <title>FPT Book Shop - All Book</title>
+  <link rel="icon" href="img/FPT.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-	<link rel="stylesheet" href="vendors/linericon/style.css">
-  <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="vendors/linericon/style.css">
   <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
   <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+  <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
+  <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-	<!--================ Start Header Menu Area =================-->
+  <!--================ Start Header Menu Area =================-->
 	<header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -54,7 +61,7 @@
 
             <ul class="nav-shop">
               <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
+              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">{{totolItem}}</span></button> </li>
               <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
             </ul>
           </div>
@@ -90,8 +97,14 @@
 				<div class="col-lg-6">
 					<div class="row">
 						<div class="single-prd-item">
-							<img class="img-fluid" src="{{book.img}}" width="450" height="400"style="margin-left: 150px;  alt="">
+							<img class="img-fluid" src="{{book.img}}" idth="450" height="400" style="margin-left: 80px;" alt="">
 						</div>
+						<!-- <div class="single-prd-item">
+							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+						</div>
+						<div class="single-prd-item">
+							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+						</div> -->
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
@@ -99,22 +112,7 @@
 						<h3 class="s_product_title"><a href="single-product"></a>{{book.name}}</a></h3>
 						<h2><p class="card-product__price">{{book.price}}</p></h2>
 						<h2><p class="card-product__price">{{book.category}}</p></h2>
-						<p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for
-							something that can make your interior look awesome, and at the same time give you the pleasant warm feeling
-							during the winter.</p>
-						{{!-- <div class="product_count">
-              <label for="qty">Quantity:</label>
-              <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-							 class="increase items-count" type="button"><i class="ti-angle-left"></i></button>
-							<input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-               class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
-							<a class="button primary-btn" href="#">Add to Cart</a>               
-						</div>
-						<div class="card_area d-flex align-items-center">
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
-						</div> --}}
+						<p><p class="card-product__price">{{book.description}}</p>
 					</div>
 				</div>
 			</div>
@@ -222,4 +220,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
