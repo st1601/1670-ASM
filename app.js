@@ -74,7 +74,21 @@ app.get('/home', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login')
 })
+app.post('/login',async (req,res, next)=>{
+    const name = req.body.txtName
+    const pass= req.body.txtPassword
+    const role = await checkUserRole(name,pass)
+    if (role=="-1"){
+        res.render('login')
+        return
+    }else if (role=="admin") {
+        res.redirect('/home')
+    } else {
+        res.redirect('/')
+    }{
+    }
 
+})
 app.post('/searchNameBook', async (req,res)=>{
     var name = req.body.txtSearchNameBook;
     const Books = await getAllObjects("Book");
@@ -130,7 +144,7 @@ app.post('/register', (req, res) => {
         password: password
     }
     insertObject(USER_TABLE_NAME, objectToInsert)
-    res.render('/')
+    res.redirect('/login')
 })
 
 app.get('/single-product', async (req,res)=>{

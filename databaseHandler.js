@@ -21,7 +21,7 @@ async function insertObjectToCollection(collectionName, newP) {
 }
 async function  checkUserRole(nameI,passI){
     const dbo = await getDB();
-    const user= await dbo.collection(USER_TABLE_NAME)({userName:nameI,password:passI});
+    const user= await dbo.collection(USER_TABLE_NAME).findOne({userName:nameI,password:passI});
     if (user==null) {
         return "-1"
     }else{
