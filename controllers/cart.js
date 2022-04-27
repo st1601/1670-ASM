@@ -17,6 +17,7 @@ async function getDB() {
 }
 
 router.get('/cart/add-to-cart/:id', async function (req, res) {
+    console.log(req.params.id);
     const productId = req.params.id;
     const id = ObjectId(productId)
 
@@ -25,7 +26,7 @@ router.get('/cart/add-to-cart/:id', async function (req, res) {
     const books = await dbo.collection('Book').find({"_id": id}).toArray();
     cart.add(books[0], books[0]._id.toString());
     req.session.cart = cart;
-    res.redirect('/');
+    res.redirect('/index');
     // })
 });
 
@@ -45,13 +46,13 @@ router.get('/cart/increase/:id', function (req, res, next) {
     res.redirect('/cart');
 });
 
-router.get('/cart/remove/:id', function (req, res, next) {
-    const productId = req.params.id;
-    const cart = new Cart(req.session.cart ? req.session.cart : {});
-    cart.removeItem(productId);
-    req.session.cart = cart;
-    res.redirect('/cart');
-});
+// router.get('/cart/remove/:id', function (req, res, next) {
+//     const productId = req.params.id;
+//     const cart = new Cart(req.session.cart ? req.session.cart : {});
+//     cart.removeItem(productId);
+//     req.session.cart = cart;
+//     res.redirect('/cart');
+// });
 
 router.get('/cart', function (req, res, next) {
     console.log("Hiha")

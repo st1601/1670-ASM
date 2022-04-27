@@ -30,59 +30,56 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-              <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Shop</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category">Shop Category</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout">Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart">Shopping Cart</a></li>
-                </ul>
-							</li>
-              <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="register">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="feedback">Feed Back</a></li>
-                  <li class="nav-item"><a class="nav-link" href="viewfeedback">View Feed Back</a></li>
-                </ul>
-              </li>
-              
-            </ul>
-
-            <ul class="nav-shop">
-              <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-              <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
-            </ul>
-          </div>
-        </div>
+          
       </nav>
     </div>
   </header>
+     <form method="post" action="login">
+                       
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form3Example3" style="color: #0d6efd;">Email</label>
+                            <input name="txtEmail" type="email" id="form3Example3" class="form-control form-control-lg"
+                                placeholder="Enter a valid your email" />
+                            
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-3">
+                            <label class="form-label" for="form3Example4" style="color: #0d6efd;">Password</label>
+                            <input name="password" type="password" id="form3Example4" class="form-control form-control-lg"
+                                placeholder="Enter password" />
+                            
+                        </div>
+
+                        <div><span style="color: red; font-weight: bold">{{err}}</span></div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- Checkbox -->
+                            <div class="form-check mb-0">
+                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                                <label class="form-check-label" for="form2Example3">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="#!" class="text-body">Forgot password?</a>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                                <br>
+                            <p class="small fw-bold mt-2 pt-1 mb-0" style="font-size: 25px;">Don't have an account? <a href="/register"
+                                    class="link-danger">Register</a></p>
+                        </div>
+
+                    </form>
+
 	<!--================ End Header Menu Area =================-->
   
   <!-- ================ start banner area ================= -->	
-	<section class="blog-banner-area" id="category">
-		<div class="container h-100">
-			<div class="blog-banner">
-				<div class="text-center">
-					<h1>Login / Register</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Login/Register</li>
-            </ol>
-          </nav>
-				</div>
-			</div>
-    </div>
-	</section>
+	
 	<!-- ================ end banner area ================= -->
   
   <!--================Login Box Area =================-->
@@ -139,32 +136,8 @@
 							</p>
 						</div>
 					</div>
-					<div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title">Quick Links</h4>
-							<ul class="list">
-								<li><a href="#">Home</a></li>
-								<li><a href="#">Shop</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">Product</a></li>
-								<li><a href="#">Brand</a></li>
-								<li><a href="#">Contact</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-2 col-md-6 col-sm-6">
-						<div class="single-footer-widget instafeed">
-							<h4 class="footer_title">Gallery</h4>
-							<ul class="list instafeed d-flex flex-wrap">
-								<li><img src="img/gallery/r1.jpg" alt=""></li>
-								<li><img src="img/gallery/r2.jpg" alt=""></li>
-								<li><img src="img/gallery/r3.jpg" alt=""></li>
-								<li><img src="img/gallery/r5.jpg" alt=""></li>
-								<li><img src="img/gallery/r7.jpg" alt=""></li>
-								<li><img src="img/gallery/r8.jpg" alt=""></li>
-							</ul>
-						</div>
-					</div>
+					
+					
 					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Contact Us</h4>

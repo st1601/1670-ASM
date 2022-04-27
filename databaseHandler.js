@@ -7,6 +7,7 @@ const DATABASE_NAME = "ASM-1670"
 async function getDB() {
     const client = await MongoClient.connect(URL);
     const dbo = client.db(DATABASE_NAME);
+    console.log('dbo' + dbo);
     return dbo;
 }
 async function insertObject(collectionName,objectToInsert){
@@ -18,6 +19,12 @@ async function insertObjectToCollection(collectionName, newP) {
     const dbo = await getDatabase();
     const result = await dbo.collection(collectionName).insertOne(newP);
     console.log("The newly user inserted id value is: ", result.insertedId.toHexString());
+}
+async function getDocumentById(collectionName, id) {
+    
+    const dbo = await getDatabase();
+    const productToEdit = await dbo.collection(collectionName).findOne({ _id: ObjectId(id) });
+    return productToEdit;
 }
 async function  checkUserRole(nameI,passI){
     const dbo = await getDB();
@@ -64,6 +71,14 @@ async function getAllDocumentsFromCollection(collectionName) {
     const products = await dbo.collection(collectionName).find({}).toArray();
     return products;
 }
-
+async function updateCollection(id, collectionName, newvalues) {
+    const myquery = { _id: ObjectId(id) };
+    const dbo = await getDatabase();
+    await dbo.collection(collectionName).updateOne(myquery, newvalues);
+}
+async function deleteProduct(collectionName, id){
+    const dbo = await getDatabase()
+    await dbo.collection(collectionName).deleteOne({_id: ObjectId(id)})
+}
 const BOOK_TABLE_NAME = "Books"
-module.exports = {getAllDocumentsFromCollection,insertObject,checkUserRole,getDatabase,getAllObjects,insertObjectToCollection,getCurrentUserSession,USER_TABLE_NAME,BOOK_TABLE_NAME, getOneObject}
+module.exports = {getAllDocumentsFromCollection,deleteProduct,updateCollection,getDocumentById,insertObject,checkUserRole,getDatabase,getAllObjects,insertObjectToCollection,getCurrentUserSession,USER_TABLE_NAME,BOOK_TABLE_NAME, getOneObject}
