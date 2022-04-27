@@ -7,31 +7,102 @@
     <title>Document</title>
 </head>
 <body>
+	<header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand logo_h" href="home.hbs"><img src="img/FPT.png" width="130" alt=""></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item active"><a class="nav-link" href="index">Home</a></li>
+              <li class="nav-item submenu dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Book</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="manageBook">View Book</a></li>
+                  <li class="nav-item"><a class="nav-link" href="addBook">Add Book</a></li>
+                </ul>
+				</li>
+				  <li class="nav-item submenu dropdown">
+				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Category</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="manageCategory">View Category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="addCategory">Add Category</a></li>
+                </ul>
+				</li>
+				<li class="nav-item submenu dropdown">
+				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Order</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="">Manager Order</a></li>
+                  <li class="nav-item"><a class="nav-link" href="replyFeedback">Reply Feedback</a></li>
+                </ul>
+					</li>
+							<li class="nav-item submenu dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Pages</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="register">Register</a></li>
+                  <li class="nav-item"><a class="nav-link" href="viewFeedback">View Feed Back</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item"><a class="nav-link" href="">Logout</a></li>
+
+              
+            </ul>
+
+           
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
      <center>
     <h1>Update Book</h1>
     <form method="post" action="updateBook">
-            <input type="hidden" name="txtId" value="{{product._id}}">
-				<div class="form-group">
-					<label>Product Name :</label>
-					<input class="form-control" type="text" name="txtName" value="{{product.name}}">
+           <div class="form-group">
+					<label>Book Name :</label>
+					<input class="form-control" type="text" name="txtName" placeholder="Enter product name">
 				</div>
 				<div class="form-group">
 					<label >Category Name :</label>
-					<select class="form-control" name="txtCategory"  id="{{product.categories}}" >
-						<option value="{{product.category._id}}" selected>{{product.category.name}}</option>
-                        {{#each categories as |cat|}}
-                        <option value="{{cat._id}}">{{cat.name}}</option>
+					<select class="form-control" name="txtCategory" id="" >
+                        {{#each categories}}
+                        <option value="{{_id}}">{{name}}</option>
                         {{/each}}
 					</select>
 				</div>
 				<div class="form-group">
 					<label>Price :</label>
-					<input class="form-control" type="text" name="txtPrice" value="{{product.price}}">
+					<input class="form-control" type="text" name="txtPrice" placeholder="Enter price" value="0">
 				</div>
+				<div class="form-group">
+					<label>Quantity:</label>
+					<input class="form-control" type="text" name="txtQuantity" placeholder="Enter quantity" value="0">
+				</div>
+
                 <div class="form-group">
-                    <label>Image :</label>
-                    <input type="text" class="form-control" name="txtImage" value="{{product.image}}">
+                    <label>Image:</label>
+                    <input type="text" class="form-control" name="txtImage" placeholder="Image link">
                 </div>
+                <div class="mb-3" style="font-size: 20px; font-weight:bold">
+                                        Author:<input type="text" name="txtAuthor" value="" class="form-control"
+                                            style="margin-left: 42px;">
+                                    </div>
+                                    <br>
+                                    <div class="mb-3" style="font-size: 20px; font-weight:bold">
+                                        Publisher:<input type="text" name="txtPublisher" value=""
+                                            class="form-control" style="margin-left: 5px;">
+                                    </div>
 				<div class="form-group">
 					<button class="btn btn-success" type="submit" value="Insert">Update</button>
 					<button class="btn btn-danger" type="reset">Reset</button>

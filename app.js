@@ -328,8 +328,8 @@ app.post('/addCategory', async (req, res) => {
    await insertObjectToCollection(collectionName, newP);
     const notify = "Add category successful"
 
-    res.render('manageCategory', )
-    { notify: notify }
+    res.render('manageCategory')
+    // { notify: notify }
     })
 
 app.get('/addCategory', (req, res) => {
@@ -360,8 +360,8 @@ app.get('/updateBook', async (req, res) => {
 
     const categories = await getAllDocumentsFromCollection('Category');
     console.log(categories)
-
-    res.render('updateBook', {books:books, categories: categories})
+    // {books:books, categories: categories}
+    res.render('updateBook', )
 })
 
 app.post('/updateBook', async (req, res) => {

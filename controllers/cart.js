@@ -25,7 +25,7 @@ router.get('/cart/add-to-cart/:id', async function (req, res) {
     const books = await dbo.collection('Book').find({"_id": id}).toArray();
     cart.add(books[0], books[0]._id.toString());
     req.session.cart = cart;
-    res.redirect('/');
+    res.redirect('index');
     // })
 });
 
