@@ -11,7 +11,8 @@ var FeedbackSchema = Schema({
     nameBook:{type:String},
     country:{type:String},
     feedback:{type:String},
-    replyFeedbackAdmin:{type:String}
+    replyFeedbackAdmin:{type:String},
+    orderStatus:{type:String}
 })
 
 module.exports = mongoose.model('Feedback', FeedbackSchema);

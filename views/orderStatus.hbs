@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status</title>
+</head>
+<body>
+    <center>
+        <form action="/orderStatus" method="post">
+        <input type="hidden" name="id" value="{{feedback._id}}">
+        <select name="orderStatus" value="{{feedback.orderStatus}}">
+            <option>Confirmed information</option>
+            <option>move to warehouse</option>
+            <option>Delivery</option>
+            <option>Finish</option>
+        </select>
+        <input type="submit" value="Update">
+    </center>
+</body>
+</html>
