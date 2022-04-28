@@ -70,6 +70,12 @@ app.use('/', homeController)
 app.get('/home', (req, res) => {
     res.render('home', { userInfo: req.session.User })
 })
+app.get('/', (req, res) => {
+    res.render('login')
+})
+app.get('/login', (req, res) => {
+    res.render('login')
+})
 
 app.get('/login', (req, res) => {
     res.render('login')
@@ -84,7 +90,7 @@ app.post('/login',async (req,res, next)=>{
     }else if (role=="admin") {
         res.redirect('/home')
     } else {
-        res.redirect('/')
+        res.redirect('/index')
     }{
     }
 
@@ -236,7 +242,7 @@ app.post('/feedback', async (req, res) => {
 
     await feedbackEntity.save()
 
-    res.redirect('/')
+    res.redirect('/index')
 })
 
 app.get('/deleteBook', async (req, res) => {

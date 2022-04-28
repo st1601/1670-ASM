@@ -8,7 +8,7 @@ const { collection } = require('./Feedback')
 
 router.use(express.urlencoded({extended:true}))
 
-router.get('/', async (req,res)=>{
+router.get('/index', async (req,res)=>{
     const allBooks = await getAllObjects("Book");
     console.log(allBooks);
     totolItem = req.session.cart?.totalQty || 0;
