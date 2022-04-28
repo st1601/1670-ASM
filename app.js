@@ -242,7 +242,7 @@ app.post('/feedback', async (req, res) => {
 
     await feedbackEntity.save()
 
-    res.redirect('/index')
+    res.redirect('viewFeedback')
 })
 
 app.get('/deleteBook', async (req, res) => {
